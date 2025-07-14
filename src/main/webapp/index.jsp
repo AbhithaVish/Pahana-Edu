@@ -5,9 +5,11 @@
     <title>JSP - Hello World</title>
 </head>
 <body>
-<h1><%= "Pahana Edu" %>
+<h1><%= "Pahana Edu 2.0" %>
 </h1>
 <br/>
-<a href="hello-servlet">Hello Servlet</a>
+<a href="hello-servlet">Pahana Edu 2.0</a>
+
+
 </body>
 </html>
