@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Jakarta Cart</title>
+</head>
+<body>
+<h2>Simple Cart</h2>
+<form action="addToCart" method="post">
+    <label>Item:</label>
+    <select name="item">
+        <option value="Book">Book - $10</option>
+        <option value="Pen">Pen - $2</option>
+        <option value="Notebook">Notebook - $5</option>
+    </select>
+    <label>Qty:</label>
+    <input type="number" name="quantity" value="1" min="1" required>
+    <button type="submit">Add to Cart</button>
+</form>
+<br>
+<a href="viewCart">View Cart</a>
+</body>
+</html>
