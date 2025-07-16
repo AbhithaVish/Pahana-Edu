@@ -1,6 +1,6 @@
 package com.example;
 
-import com.example.DBUtil;
+import com.example.util.DBUtil;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
