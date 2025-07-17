@@ -29,17 +29,17 @@ public class RegisterServlet extends HttpServlet {
     private static final String INSERT_USER_SQL =
             "INSERT INTO login_tbl(name, username, email, password) VALUES (?, ?, ?, ?)";
 
-
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp)
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse resp)
             throws ServletException, IOException {
 
-        String name = req.getParameter(PARAM_NAME);
-        String email = req.getParameter(PARAM_EMAIL);
-        String username = req.getParameter(PARAM_USERNAME);
-        String password = req.getParameter(PARAM_PASSWORD);
+        String name = request.getParameter(PARAM_NAME);
+        String email = request.getParameter(PARAM_EMAIL);
+        String username = request.getParameter(PARAM_USERNAME);
+        String password = request.getParameter(PARAM_PASSWORD);
 
         User user = new User(name, email, username, password);
-        RequestDispatcher dispatcher = req.getRequestDispatcher("signup.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("signup.jsp");
 
         try (Connection conn = DBUtil.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(INSERT_USER_SQL)) {
@@ -50,13 +50,13 @@ public class RegisterServlet extends HttpServlet {
             pstmt.setString(4, user.getPassword());
 
             int rowCount = pstmt.executeUpdate();
-            req.setAttribute("status", rowCount > 0 ? "success" : "failed");
+            request.setAttribute("status", rowCount > 0 ? "success" : "failed");
 
         } catch (SQLException e) {
             LOGGER.log(Level.SEVERE, "Database error during registration", e);
-            req.setAttribute("status", "failed");
+            request.setAttribute("status", "failed");
         }
 
-        dispatcher.forward(req, resp);
+        dispatcher.forward(request, resp);
     }
 }
