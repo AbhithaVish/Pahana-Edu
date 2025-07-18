@@ -38,7 +38,7 @@ public class LoginServlet extends HttpServlet {
             if (rs.next()) {
                 // Login successful
                 req.setAttribute("status", "success");
-                RequestDispatcher dispatcher = req.getRequestDispatcher("welcome.jsp");
+                RequestDispatcher dispatcher = req.getRequestDispatcher("Admin/AdminHome.jsp");
                 dispatcher.forward(req, resp);
             } else {
                 // Login failed

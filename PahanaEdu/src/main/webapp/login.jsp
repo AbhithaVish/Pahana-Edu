@@ -9,11 +9,12 @@
 <html>
 <head>
     <title>Login Page</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <section>
     <div class="container">
-        <h1 class="text-center">The</h1>
+        <h1 class="text-center">Pahana Edu</h1>
         <form action="login" method="post">
             <div class="form-group">
                 <label for="username">Username</label>
