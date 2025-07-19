@@ -41,18 +41,15 @@
                 <i class='bx bx-home mr-2'></i> Dashboard
             </a>
             <a href="#" class="block hover:text-green-800">
-                <i class='bx bx-user-id-card'></i> Cashier
-            </a>
-            <a href="#" class="block hover:text-green-800">
                 <i class='bx bx-user mr-2'></i> Cashier
             </a>
-            <a href="#" class="block hover:text-green-800">
+            <a href="Admin/Products/add-product.jsp" class="block hover:text-green-800">
                 <i class='bx bx-file mr-2'></i> Products
             </a>
             <a href="#" class="block hover:text-green-800">
                 <i class='bx bx-cog mr-2'></i> Settings
             </a>
-            <a href="../login.jsp" class="block text-red-500 mt-10 hover:text-red-700">
+            <a href="login.jsp" class="block text-red-500 mt-10 hover:text-red-700">
                 <i class='bx bx-log-out mr-2'></i> Logout
             </a>
         </nav>

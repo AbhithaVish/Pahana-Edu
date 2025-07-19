@@ -17,11 +17,7 @@
 <body class="bg-gray-50 font-sans">
 <div class="flex min-h-screen">
 
-    <div class="flex min-h-screen">
-        <jsp:include page="NavigationBar/NavBar.jsp" />
-        <main class="flex-1 p-8 overflow-y-auto"> ... </main>
-    </div>
-
+    <jsp:include page="NavigationBar/NavBar.jsp" />
 
     <main class="flex-1 p-8 overflow-y-auto">
 
@@ -49,43 +45,16 @@
             </div>
         </div>
 
-        <!-- User Table -->
-        <div class="bg-white p-6 rounded-lg shadow mb-8">
-            <h2 class="text-xl font-semibold mb-4">Recent Users</h2>
-            <table class="min-w-full text-sm">
-                <thead>
-                <tr class="text-left border-b">
-                    <th class="py-2">Name</th>
-                    <th class="py-2">Email</th>
-                    <th class="py-2">Role</th>
-                    <th class="py-2">Status</th>
-                </tr>
-                </thead>
-            </table>
+        <!-- Add Product Button -->
+        <div class="mb-4">
+            <a href="Admin/Products/add-product.jsp">
+                <button class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
+                    Add Product
+                </button>
+            </a>
         </div>
 
-        <!-- Settings Panel -->
-        <div class="bg-white p-6 rounded-lg shadow">
-            <h2 class="text-xl font-semibold mb-4">System Settings</h2>
-            <form action="SaveSettingsServlet" method="post" class="space-y-4">
-                <div>
-                    <label class="block text-sm font-medium">Site Title</label>
-                    <input type="text" name="siteTitle" class="w-full mt-1 p-2 border rounded"
-                           value="">
-                </div>
-                <div>
-                    <label class="block text-sm font-medium">Notification Email</label>
-                    <input type="email" name="adminEmail" class="w-full mt-1 p-2 border rounded"
-                           value="">
-                </div>
-                <div>
-                    <button class="mt-4 px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700"
-                            type="submit">
-                        Save Settings
-                    </button>
-                </div>
-            </form>
-        </div>
+        <!-- Placeholder for other sections like product list -->
     </main>
 </div>
 </body>
