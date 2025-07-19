@@ -17,17 +17,10 @@
 <body class="bg-gray-50 font-sans">
 <div class="flex min-h-screen">
 
-    <!-- nav bar -->
-    <aside class="w-64 bg-white p-6 border-r">
-        <div class="text-2xl font-bold text-green-600 mb-10">Pahana Edu Admin</div>
-        <nav class="space-y-4 text-gray-700">
-            <a href="AdminHome.jsp" class="block font-semibold text-green-600">Dashboard</a>
-            <a href="#" class="block">Users</a>
-            <a href="#" class="block">Reports</a>
-            <a href="#" class="block">Settings</a>
-            <a href="..\login.jsp" class="block text-red-500 mt-10">Logout</a>
-        </nav>
-    </aside>
+    <div class="flex min-h-screen">
+        <jsp:include page="NavigationBar/NavBar.jsp" />
+        <main class="flex-1 p-8 overflow-y-auto"> ... </main>
+    </div>
 
 
     <main class="flex-1 p-8 overflow-y-auto">
