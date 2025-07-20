@@ -44,7 +44,10 @@
                 <i class='bx bx-user mr-2'></i> Cashier
             </a>
             <a href="../Admin/Products/add-product.jsp" class="block hover:text-green-800">
-                <i class='bx bx-file mr-2'></i> Products
+                <i class='bx bx-file mr-2'></i> Add Products
+            </a>
+            <a href="../Admin/Products/view-products.jsp" class="block hover:text-green-800">
+                <i class='bx bx-file mr-2'></i> View Products
             </a>
             <a href="#" class="block hover:text-green-800">
                 <i class='bx bx-cog mr-2'></i> Settings

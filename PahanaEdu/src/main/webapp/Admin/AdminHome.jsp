@@ -54,6 +54,15 @@
             </a>
         </div>
 
+        <!-- View Product Button -->
+        <div class="mb-4">
+            <a href="Admin/Products/view-products.jsp">
+                <button class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
+                    View Product
+                </button>
+            </a>
+        </div>
+
         <!-- Placeholder for other sections like product list -->
     </main>
 </div>
