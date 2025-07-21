@@ -1,43 +1,29 @@
 package com.example.servlet;
 
+import com.example.dao.ProductDAO;
 import com.example.model.Product;
-import com.example.util.DBUtil;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
 
 import java.io.IOException;
-import java.sql.*;
-import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet("/viewProducts")
 public class ViewProductsServlet extends HttpServlet {
 
-    private static final String SELECT_ALL_PRODUCTS = "SELECT * FROM products";
+    private ProductDAO productDAO = new ProductDAO();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        List<Product> productList = new ArrayList<>();
+        List<Product> productList = productDAO.getAllProducts();
 
-        try (Connection conn = DBUtil.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(SELECT_ALL_PRODUCTS);
-             ResultSet rs = stmt.executeQuery()) {
-
-            while (rs.next()) {
-                Product product = new Product(
-                        rs.getInt("id"),
-                        rs.getString("name"),
-                        rs.getString("description"),
-                        rs.getDouble("price")
-                );
-                productList.add(product);
-            }
-
-        } catch (SQLException e) {
-            e.printStackTrace(); // You can log this properly in production
+        // Debug output
+        System.out.println("Retrieved " + productList.size() + " products from database");
+        for (Product p : productList) {
+            System.out.println("Product: " + p.getId() + ", " + p.getName() + ", " + p.getDescription() + ", " + p.getPrice());
         }
 
         request.setAttribute("productList", productList);

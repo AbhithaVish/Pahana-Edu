@@ -36,10 +36,15 @@ public class LoginServlet extends HttpServlet {
             ResultSet rs = pstmt.executeQuery();
 
             if (rs.next()) {
-                // Login successful
-                req.setAttribute("status", "success");
-                RequestDispatcher dispatcher = req.getRequestDispatcher("Admin/AdminHome.jsp");
-                dispatcher.forward(req, resp);
+                if ("admin".equals(username) && "admin123".equals(password)) {
+                    // Admin login
+                    RequestDispatcher dispatcher = req.getRequestDispatcher("Admin/AdminHome.jsp");
+                    dispatcher.forward(req, resp);
+                } else {
+                    // Other users (e.g., cashier)
+                    RequestDispatcher dispatcher = req.getRequestDispatcher("Cashier/CashierHome.jsp");
+                    dispatcher.forward(req, resp);
+                }
             } else {
                 // Login failed
                 req.setAttribute("status", "failed");

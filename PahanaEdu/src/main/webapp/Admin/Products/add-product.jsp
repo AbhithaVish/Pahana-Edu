@@ -26,7 +26,6 @@
 
 <div class="flex min-h-screen">
 
-  <!-- Include sidebar (reused from NavBar.jsp) -->
   <jsp:include page="../NavigationBar/NavBar.jsp" />
 
   <!-- Main content -->
