@@ -1,7 +1,7 @@
 package com.example.servlet;
 
-import com.example.util.DBUtil;
-import com.example.model.User;
+import com.example.util.DBConn;
+import com.example.persistence.model.User;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -20,15 +20,15 @@ import java.util.logging.Logger;
 public class RegisterServlet extends HttpServlet {
 
     private static final Logger LOGGER = Logger.getLogger(RegisterServlet.class.getName());
-
+//model
     private static final String PARAM_NAME = "name";
     private static final String PARAM_EMAIL = "email";
     private static final String PARAM_USERNAME  = "username";
     private static final String PARAM_PASSWORD = "password";
-
+//dao
     private static final String INSERT_USER_SQL =
             "INSERT INTO login_tbl(name, username, email, password) VALUES (?, ?, ?, ?)";
-
+//--------
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse resp)
             throws ServletException, IOException {
@@ -41,7 +41,7 @@ public class RegisterServlet extends HttpServlet {
         User user = new User(name, email, username, password);
         RequestDispatcher dispatcher = request.getRequestDispatcher("signup.jsp");
 
-        try (Connection conn = DBUtil.getConnection();
+        try (Connection conn = DBConn.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(INSERT_USER_SQL)) {
 
             pstmt.setString(1, user.getName());

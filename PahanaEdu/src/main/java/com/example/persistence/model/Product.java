@@ -1,4 +1,4 @@
-package com.example.model;
+package com.example.persistence.model;
 
 public class Product {
     private int id;
@@ -7,7 +7,7 @@ public class Product {
     private double price;
 
     public Product() {}
-
+//CONSTRUCTOR
     public Product(String name, String description, double price) {
         this.name = name;
         this.description = description;
@@ -18,7 +18,7 @@ public class Product {
         this(name, description, price);
         this.id = id;
     }
-
+//GETTER AND SETTER - USED FOR ENCAPSULATION
     public int getId() { return id; }
     public void setId(int id) { this.id = id; }
 

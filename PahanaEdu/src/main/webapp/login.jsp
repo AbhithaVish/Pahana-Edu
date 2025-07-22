@@ -6,6 +6,19 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%
+    // Check if user is already logged in
+    HttpSession userSession = request.getSession(false);
+    if (userSession != null && userSession.getAttribute("username") != null) {
+        String userType = (String) userSession.getAttribute("userType");
+        if ("admin".equals(userType)) {
+            response.sendRedirect("Admin/AdminHome.jsp");
+        } else {
+            response.sendRedirect("Cashier/CashierHome.jsp");
+        }
+        return;
+    }
+%>
 <html>
 <head>
     <title>Login Page</title>
@@ -41,9 +54,10 @@
         %>
         <p style="color:red;">Invalid username or password!</p>
         <% } else if ("error".equals(status)) { %>
-        <p style="color:red;">An error occurred. Please try again.</p>
+        <p style="color:red;">An error occurred: <%= request.getAttribute("errorMessage") != null ? request.getAttribute("errorMessage") : "Please try again." %></p>
         <% } %>
     </div>
 </section>
 </body>
 </html>
+```

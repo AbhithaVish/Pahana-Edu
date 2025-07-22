@@ -1,4 +1,4 @@
-package com.example.model;
+package com.example.persistence.model;
 
 public class User {
     private String name;
@@ -13,6 +13,9 @@ public class User {
         this.email = email;
         this.username = username;
         this.password = password;
+    }
+
+    public User(String username, String userType) {
     }
 
     public String getName() {

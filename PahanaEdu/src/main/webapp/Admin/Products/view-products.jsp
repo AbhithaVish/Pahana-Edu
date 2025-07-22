@@ -6,7 +6,8 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -33,34 +34,22 @@
   </div>
 
   <!-- Product table -->
-  <div class="table">
-    <table>
-      <thead>
-      <tr>
-        <th>ID</th>
-        <th>Name</th>
-        <th>Description</th>
-        <th>Price (LKR)</th>
-      </tr>
-      </thead>
-      <tbody id="product-tbody">
-      <c:forEach var="product" items="${productList}">
-        <tr>
-          <td data-cell="ID">${product.id}</td>
-          <td data-cell="Name">${product.name}</td>
-          <td data-cell="Description">${product.description}</td>
-          <td data-cell="Price">${product.price}</td>
-        </tr>
-      </c:forEach>
-      </tbody>
-    </table>
-  </div>
 
-  <div class="title" style="text-align: center; margin-top: 30px;">
-    <a href="../../admin-dashboard.jsp">
-      <button class="view-link">Back to Dashboard</button>
-    </a>
-  </div>
+  <c:forEach var="product" items="${productList}">
+    <tr>
+      <td data-cell="ID">${product.id}</td>
+      <td data-cell="Name">${product.name}</td>
+      <td data-cell="Description">${product.description}</td>
+      <td data-cell="Price">${product.price}</td>
+    </tr>
+  </c:forEach>
+
+
+<%--  <div class="title" style="text-align: center; margin-top: 30px;">--%>
+<%--    <a href="../../admin-dashboard.jsp">--%>
+<%--      <button class="view-link">Back to Dashboard</button>--%>
+<%--    </a>--%>
+<%--  </div>--%>
 
 </div>
 

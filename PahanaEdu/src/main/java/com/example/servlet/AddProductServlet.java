@@ -1,7 +1,7 @@
 package com.example.servlet;
 
-import com.example.model.Product;
-import com.example.util.DBUtil;
+import com.example.persistence.model.Product;
+import com.example.util.DBConn;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
@@ -26,7 +26,7 @@ public class AddProductServlet extends HttpServlet {
             double price = Double.parseDouble(priceStr);
             Product product = new Product(name, desc, price);
 
-            try (Connection conn = DBUtil.getConnection();
+            try (Connection conn = DBConn.getConnection();
                  PreparedStatement stmt = conn.prepareStatement(INSERT_PRODUCT_SQL)) {
 
                 stmt.setString(1, product.getName());
