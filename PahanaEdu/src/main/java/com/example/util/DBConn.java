@@ -6,9 +6,9 @@ import java.sql.SQLException;
 
 public class DBConn {
     // Default connection (optional)
-    private static final String URL = "jdbc:mysql://localhost:3306/jakartaee";
-    private static final String LOGIN_DB_URL = "jdbc:mysql://localhost:3306/jakartaee";
-    private static final String PRODUCT_DB_URL = "jdbc:mysql://localhost:3306/your_product_db"; // Change as needed
+    private static final String URL = "jdbc:mysql://localhost:3306/pahana_edu";
+    private static final String LOGIN_DB_URL = "jdbc:mysql://localhost:3306/pahana_edu";
+    private static final String PRODUCT_DB_URL = "jdbc:mysql://localhost:3306/pahana_edu"; // Change as needed
     // ✔ Define this
     private static final String USER = "root";
     private static final String PASSWORD = ""; // Set your actual DB password if applicable
