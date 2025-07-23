@@ -8,10 +8,10 @@ public class DBConn {
     // Default connection (optional)
     private static final String URL = "jdbc:mysql://localhost:3306/pahana_edu";
     private static final String LOGIN_DB_URL = "jdbc:mysql://localhost:3306/pahana_edu";
-    private static final String PRODUCT_DB_URL = "jdbc:mysql://localhost:3306/pahana_edu"; // Change as needed
+    private static final String PRODUCT_DB_URL = "jdbc:mysql://localhost:3306/pahana_edu";
     // ✔ Define this
     private static final String USER = "root";
-    private static final String PASSWORD = ""; // Set your actual DB password if applicable
+    private static final String PASSWORD = "";
 
     public static Connection getConnection() throws SQLException {
         try {

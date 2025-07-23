@@ -18,7 +18,7 @@
 </head>
 <body>
 
-<jsp:include page="../NavigationBar/NavBar.jsp" />
+<%--<jsp:include page="../NavigationBar/NavBar.jsp" />--%>
 
 <div class="main_container">
 

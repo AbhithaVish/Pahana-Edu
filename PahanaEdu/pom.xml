@@ -25,14 +25,6 @@
             <version>9.3.0</version>
         </dependency>
 
-        <!-- REMOVE THIS OLD DEPENDENCY -->
-        <!-- <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>jstl</artifactId>
-            <version>1.2</version>
-        </dependency> -->
-
-        <!-- JSTL API -->
         <dependency>
             <groupId>jakarta.servlet.jsp.jstl</groupId>
             <artifactId>jakarta.servlet.jsp.jstl-api</artifactId>
