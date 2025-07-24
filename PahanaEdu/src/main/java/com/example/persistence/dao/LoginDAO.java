@@ -10,8 +10,8 @@ import java.sql.SQLException;
 
 public class LoginDAO {
 
-    public UserDTO authenticateUser(String username, String password) throws SQLException {
-        String query = "SELECT username, profile FROM login_tbl WHERE username = ? AND password = ?";
+    public boolean authenticateCashier(String username, String password) throws SQLException {
+        String query = "SELECT * FROM login_tbl WHERE username = ? AND password = ?";
 
         try (Connection conn = DBConn.getInstance().getConnection("login");
              PreparedStatement stmt = conn.prepareStatement(query)) {
@@ -20,15 +20,8 @@ public class LoginDAO {
             stmt.setString(2, password);
 
             try (ResultSet rs = stmt.executeQuery()) {
-                if (rs.next()) {
-                    UserDTO user = new UserDTO();
-                    user.setUsername(rs.getString("username"));
-                    user.setUserType(rs.getString("profile")); // assuming profile stores user type
-                    return user;
-                }
+                return rs.next(); // returns true if username+password match
             }
         }
-
-        return null; // Login failed
     }
 }

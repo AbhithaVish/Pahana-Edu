@@ -1,69 +1,51 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: abhit
-  Date: 7/19/2025
-  Time: 10:41 PM
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <title>View Products</title>
-  <link rel="stylesheet" href="view_products.css">
-
+  <style>
+    body { font-family: Arial, sans-serif; background-color: #f9f9f9; }
+    table { width: 100%; border-collapse: collapse; background: #fff; }
+    th, td { padding: 12px; border-bottom: 1px solid #ccc; text-align: left; }
+    th { background-color: #f1f1f1; }
+    .center { text-align: center; }
+  </style>
 </head>
 <body>
+<div class="p-8">
+  <h1 class="text-2xl font-bold mb-6">Product View</h1>
 
-<%--<jsp:include page="../NavigationBar/NavBar.jsp" />--%>
-
-<div class="main_container">
-
-  <div class="title">
-    <h1>Product List</h1>
-    <br><br>
-  </div>
-
-  <!-- Optional search bar -->
-  <div class="search-bar">
-    <label for="search">Search</label>
-    <input type="text" id="search" class="search-select" placeholder="Product Name">
-  </div>
-
-  <!-- Product table -->
-
-  <c:forEach var="product" items="${productList}">
+  <table>
+    <thead>
     <tr>
-      <td data-cell="ID">${product.id}</td>
-      <td data-cell="Name">${product.name}</td>
-      <td data-cell="Description">${product.description}</td>
-      <td data-cell="Price">${product.price}</td>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Price</th>
     </tr>
-  </c:forEach>
+    </thead>
+    <tbody>
+    <c:forEach var="product" items="${products}">
+      <tr>
+        <td>${product.name}</td>
+        <td>${product.description}</td>
+        <td>$${product.price}</td>
+      </tr>
+    </c:forEach>
 
+    <c:if test="${empty products}">
+      <tr>
+        <td colspan="3" class="center">No products found.</td>
+      </tr>
+    </c:if>
+    </tbody>
+  </table>
 
-<%--  <div class="title" style="text-align: center; margin-top: 30px;">--%>
-<%--    <a href="../../admin-dashboard.jsp">--%>
-<%--      <button class="view-link">Back to Dashboard</button>--%>
-<%--    </a>--%>
-<%--  </div>--%>
-
+  <div class="mt-6 center">
+    <a href="${pageContext.request.contextPath}/Admin/AdminHome.jsp" style="color: #007bff; text-decoration: none;">← Back to Dashboard</a>
+  </div>
 </div>
-
-<script>
-  // Simple search functionality
-  document.getElementById("search").addEventListener("input", function () {
-    const searchQuery = this.value.toLowerCase();
-    const rows = document.querySelectorAll("#product-tbody tr");
-    rows.forEach(row => {
-      const name = row.querySelector("td[data-cell='Name']").textContent.toLowerCase();
-      row.style.display = name.includes(searchQuery) ? "" : "none";
-    });
-  });
-</script>
-
 </body>
 </html>

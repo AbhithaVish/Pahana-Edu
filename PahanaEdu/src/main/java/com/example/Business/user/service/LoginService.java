@@ -15,10 +15,22 @@ public class LoginService {
         this.loginDAO = new LoginDAO();
     }
 
-    public UserDTO authenticate(String username, String password) throws SQLException {
+    public String authenticate(String username, String password) throws SQLException {
         if (username == null || password == null || username.isEmpty() || password.isEmpty()) {
             return null;
         }
-        return loginDAO.authenticateUser(username, password);
+
+        // Check hardcoded admin
+        if ("admin".equals(username) && "admin123".equals(password)) {
+            return "admin";
+        }
+
+        // Check cashier in DB
+        boolean cashierExists = loginDAO.authenticateCashier(username, password);
+        if (cashierExists) {
+            return "cashier";
+        }
+
+        return null; // invalid login
     }
 }

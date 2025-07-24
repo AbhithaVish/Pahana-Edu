@@ -28,26 +28,22 @@ public class LoginController extends HttpServlet {
         String password = req.getParameter("password");
 
         try {
-            UserDTO user = loginService.authenticate(username, password);
+            String userType = loginService.authenticate(username, password);
 
-            if (user != null) {
-                // Create session for successful login
+            if (userType != null) {
                 HttpSession session = req.getSession();
-                session.setAttribute("username", user.getUsername());
-                session.setAttribute("loginTime", System.currentTimeMillis());
-                session.setAttribute("userType", user.getUserType());
+                session.setAttribute("username", username);
+                session.setAttribute("userType", userType);
+                session.setMaxInactiveInterval(30 * 60); // 30 minutes
 
-                // Set session timeout (30 minutes)
-                session.setMaxInactiveInterval(30 * 60);
-
-                // Redirect based on user type
-                if ("admin".equals(user.getUserType())) {
+                if ("admin".equals(userType)) {
                     resp.sendRedirect("Admin/AdminHome.jsp");
                 } else {
                     resp.sendRedirect("Cashier/CashierHome.jsp");
                 }
+
             } else {
-                // Login failed
+                // Invalid login
                 req.setAttribute("status", "failed");
                 RequestDispatcher dispatcher = req.getRequestDispatcher("login.jsp");
                 dispatcher.forward(req, resp);
