@@ -13,7 +13,7 @@ public class UserDAO {
             "INSERT INTO login_tbl(name, username, email, password) VALUES (?, ?, ?, ?)";
 
     public boolean saveUser(User user) throws SQLException {
-        try (Connection conn = DBConn.getConnection();
+        try (Connection conn = DBConn.getConnection("login");
              PreparedStatement pstmt = conn.prepareStatement(INSERT_USER_SQL)) {
 
             pstmt.setString(1, user.getName());

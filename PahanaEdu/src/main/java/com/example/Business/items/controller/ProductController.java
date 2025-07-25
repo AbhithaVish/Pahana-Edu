@@ -3,6 +3,7 @@ package com.example.Business.items.controller;
 
 import com.example.Business.items.dto.ProductDTO;
 import com.example.Business.items.service.ProductService;
+import com.example.persistence.model.Product;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -11,6 +12,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
