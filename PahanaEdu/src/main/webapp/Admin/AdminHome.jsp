@@ -59,7 +59,7 @@
 
         <!-- View Product Button -->
         <div class="mb-4">
-            <a href="${pageContext.request.contextPath}/view-cart">
+            <a href="${pageContext.request.contextPath}/view-products">
                 <button class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
                     Product View
                 </button>
