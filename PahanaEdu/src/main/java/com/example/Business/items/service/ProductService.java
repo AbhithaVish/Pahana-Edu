@@ -36,34 +36,4 @@ public class ProductService {
         }
     }
 
-    public ProductDTO getProductById(int id) {
-        try {
-            Product product = productDAO.getProductById(id);
-            return product != null ? ProductMapper.toDTO(product) : null;
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
-
-    public boolean updateProduct(ProductDTO dto, int id) {
-        try {
-            Product product = ProductMapper.toEntity(dto);
-            product.setId(id);
-            return productDAO.updateProduct(product);
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return false;
-        }
-    }
-
-    public boolean deleteProduct(int id) {
-        try {
-            return productDAO.deleteProduct(id);
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return false;
-        }
-    }
-
 }

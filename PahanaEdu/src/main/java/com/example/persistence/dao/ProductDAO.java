@@ -47,41 +47,4 @@ public class ProductDAO {
 
         return products;
     }
-
-    public Product getProductById(int id) throws SQLException {
-        try (Connection conn = DBConn.getConnection("getById");
-             PreparedStatement ps = conn.prepareStatement("SELECT * FROM products WHERE id = ?")) {
-            ps.setInt(1, id);
-            ResultSet rs = ps.executeQuery();
-            if (rs.next()) {
-                return new Product(
-                        rs.getInt("id"),
-                        rs.getString("name"),
-                        rs.getString("description"),
-                        rs.getDouble("price")
-                );
-            }
-        }
-        return null;
-    }
-
-    public boolean updateProduct(Product product) throws SQLException {
-        try (Connection conn = DBConn.getConnection("update");
-             PreparedStatement ps = conn.prepareStatement("UPDATE products SET name=?, description=?, price=? WHERE id=?")) {
-            ps.setString(1, product.getName());
-            ps.setString(2, product.getDescription());
-            ps.setDouble(3, product.getPrice());
-            ps.setInt(4, product.getId());
-            return ps.executeUpdate() > 0;
-        }
-    }
-
-    public boolean deleteProduct(int id) throws SQLException {
-        try (Connection conn = DBConn.getConnection("delete");
-             PreparedStatement ps = conn.prepareStatement("DELETE FROM products WHERE id = ?")) {
-            ps.setInt(1, id);
-            return ps.executeUpdate() > 0;
-        }
-    }
-
 }
