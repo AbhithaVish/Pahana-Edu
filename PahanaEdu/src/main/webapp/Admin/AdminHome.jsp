@@ -11,13 +11,13 @@
 <head>
     <meta charset="UTF-8">
     <title>Admin Dashboard</title>
-<%--    <meta name="viewport" content="width=device-width, initial-scale=1.0">--%>
-<%--    <script src="https://cdn.tailwindcss.com"></script>--%>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-50 font-sans">
 <div class="flex min-h-screen">
 
-<%--    <jsp:include page="NavigationBar/NavBar.jsp" />--%>
+    <jsp:include page="NavigationBar/NavBar.jsp" />
 
     <main class="flex-1 p-8 overflow-y-auto">
 
