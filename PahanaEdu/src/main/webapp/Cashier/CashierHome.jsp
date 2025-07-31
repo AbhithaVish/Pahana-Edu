@@ -50,7 +50,12 @@
         <div class="flex justify-between items-center mb-6">
             <input type="text" placeholder="Search books..." class="w-1/3 p-2 border rounded-lg" />
             <div class="flex items-center gap-4">
-                <span class="text-sm text-gray-600">Cashier</span>
+                <span class="text-sm text-gray-600">
+                    <%
+                        String loggedInUser = (String) session.getAttribute("username");
+                    %>
+                <span class="text-sm text-gray-600"><%= loggedInUser != null ? loggedInUser : "Cashiers" %></span>
+                </span>
                 <div class="w-8 h-8 rounded-full bg-gray-300"></div>
             </div>
         </div>

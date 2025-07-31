@@ -30,10 +30,10 @@
             <!-- Sidebar -->
             <aside class="w-60 bg-white p-6 border-r">
                 <div class="text-2xl font-bold text-green-600 mb-10">Pahana Edu</div>
-                <%
-                    String loggedInUser = (String) session.getAttribute("username");
-                %>
-                <span class="text-sm text-gray-600"><%= loggedInUser != null ? loggedInUser : "Cashier" %></span>
+<%--                <%--%>
+<%--                    String loggedInUser = (String) session.getAttribute("username");--%>
+<%--                %>--%>
+<%--                <span class="text-sm text-gray-600"><%= loggedInUser != null ? loggedInUser : "Cashiers" %></span>--%>
 
                 <nav class="space-y-4 text-gray-700">
                     <a href="CashierHome" class="block font-semibold">Dashboard</a>

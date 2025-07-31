@@ -38,22 +38,24 @@
                 if (productList != null && !productList.isEmpty()) {
                     for (Product p : productList) {
             %>
-            <div class="bg-gray-900 text-white p-4 rounded-xl shadow hover:shadow-lg transition duration-200">
+            <div class="bg-gray-900 text-white p-4 rounded-xl shadow hover:shadow-lg transition duration-200 flex flex-col justify-between h-full">
                 <h3 class="text-lg font-bold mb-1"><%= p.getName() %></h3>
-                <p class="text-sm text-gray-400 mb-2">Rs. <%= String.format("%.2f", p.getPrice()) %></p>
+                <p class="text-sm text-gray-400 mb-4">Rs. <%= String.format("%.2f", p.getPrice()) %></p>
 
                 <form method="post" action="<%= request.getContextPath() %>/AddToCartServlet">
                     <input type="hidden" name="id" value="<%= p.getId() %>">
                     <input type="hidden" name="name" value="<%= p.getName() %>">
                     <input type="hidden" name="price" value="<%= p.getPrice() %>">
+                    <input type="hidden" name="quantity" value="1" class="quantity-input" />
 
                     <div class="flex items-center justify-between mt-4">
                         <div class="flex items-center space-x-2 bg-gray-800 px-3 py-1 rounded-full">
-                            <button type="button" class="text-xl font-bold text-yellow-400">−</button>
-                            <span class="text-white">0</span>
-                            <button type="button" class="text-xl font-bold text-yellow-400">+</button>
+                            <button type="button" class="text-xl font-bold text-yellow-400 minus-btn">−</button>
+                            <span class="text-white quantity-display">1</span>
+                            <button type="button" class="text-xl font-bold text-yellow-400 plus-btn">+</button>
                         </div>
-                        <button type="submit" class="bg-green-500 hover:bg-green-600 px-3 py-1 rounded-full text-white flex items-center">
+
+                        <button type="submit" class="bg-green-500 hover:bg-green-600 px-4 py-2 rounded-full text-white flex items-center ml-4">
                             <svg class="w-5 h-5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path d="M3 3h2l.4 2M7 13h14l-1.5 8H6L4 6H2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>
@@ -69,11 +71,38 @@
             <p class="text-center text-gray-500 col-span-full">No products found.</p>
             <% } %>
         </div>
-
-
     </main>
 
-    <%--    <jsp:include page="CartSummary.jsp" />--%>
+    <jsp:include page="CartSummary.jsp" />
 </div>
+
+<script>
+    document.querySelectorAll('.plus-btn').forEach((btn) => {
+        btn.addEventListener('click', () => {
+            const form = btn.closest('form');
+            const input = form.querySelector('.quantity-input');
+            const display = form.querySelector('.quantity-display');
+            let qty = parseInt(input.value) || 1;
+            qty++;
+            input.value = qty;
+            display.textContent = qty;
+        });
+    });
+
+    document.querySelectorAll('.minus-btn').forEach((btn) => {
+        btn.addEventListener('click', () => {
+            const form = btn.closest('form');
+            const input = form.querySelector('.quantity-input');
+            const display = form.querySelector('.quantity-display');
+            let qty = parseInt(input.value) || 1;
+            if (qty > 1) {
+                qty--;
+                input.value = qty;
+                display.textContent = qty;
+            }
+        });
+    });
+</script>
+
 </body>
 </html>

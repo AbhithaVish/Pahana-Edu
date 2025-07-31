@@ -1,9 +1,9 @@
 package com.example.servlet;
 
-import com.example.model.Cart;
+import com.example.model.CartItem;
 import jakarta.servlet.*;
-import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
+import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -11,42 +11,38 @@ import java.util.List;
 
 @WebServlet("/AddToCartServlet")
 public class AddToCartServlet extends HttpServlet {
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
         String name = request.getParameter("name");
         double price = Double.parseDouble(request.getParameter("price"));
 
-        // Create a cart item (you can use your existing Cart model or create a new one)
-        Cart item = new Cart(id, name, 1, price); // quantity = 1 by default
+        // Get quantity from request
+        int quantity = 1;
+        try {
+            quantity = Integer.parseInt(request.getParameter("quantity"));
+        } catch (NumberFormatException ignored) {}
 
-        // Get or create the cart list in session
         HttpSession session = request.getSession();
-        List<Cart> cartList = (List<Cart>) session.getAttribute("cartList");
-        if (cartList == null) {
-            cartList = new ArrayList<>();
+        List<CartItem> cart = (List<CartItem>) session.getAttribute("cart");
+
+        if (cart == null) {
+            cart = new ArrayList<>();
         }
 
-        // Check if product already in cart, increment quantity
-        boolean exists = false;
-        for (Cart c : cartList) {
-            if (c.getId() == id) {
-                c.setQuantity(c.getQuantity() + 1);
-                exists = true;
+        boolean found = false;
+        for (CartItem item : cart) {
+            if (item.getId() == id) {
+                item.setQuantity(item.getQuantity() + quantity);
+                found = true;
                 break;
             }
         }
 
-        if (!exists) {
-            cartList.add(item);
+        if (!found) {
+            cart.add(new CartItem(id, name, price, quantity));
         }
 
-        // Save back to session
-        session.setAttribute("cartList", cartList);
-
-        // Redirect back to billing page
-        response.sendRedirect("billing");
+        session.setAttribute("cart", cart);
+        response.sendRedirect("CartSummary.jsp");
     }
 }
