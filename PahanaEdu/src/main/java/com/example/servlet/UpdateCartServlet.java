@@ -37,6 +37,6 @@ public class UpdateCartServlet extends HttpServlet {
         }
 
         session.setAttribute("cart", cart);
-        response.sendRedirect("Cashier/CartSummary.jsp");
+        response.sendRedirect("CartSummary.jsp");
     }
 }

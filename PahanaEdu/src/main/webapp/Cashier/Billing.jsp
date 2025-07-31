@@ -74,6 +74,7 @@
     </main>
 
     <jsp:include page="CartSummary.jsp" />
+
 </div>
 
 <script>
