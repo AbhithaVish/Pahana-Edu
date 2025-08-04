@@ -46,6 +46,6 @@ public class AddToCartServlet extends HttpServlet {
 
         session.setAttribute("cart", cart);
         response.setStatus(HttpServletResponse.SC_OK);
-        response.getWriter().write("Item added");
+        response.sendRedirect("billing.jsp");
     }
 }
