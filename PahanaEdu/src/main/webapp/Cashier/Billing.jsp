@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: abhit
-  Date: 8/4/2025
-  Time: 6:59 AM
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page import="com.example.CartItem" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="java.util.*" %>
@@ -18,6 +11,17 @@
         input, button { padding: 8px; margin: 4px; }
         table { width: 100%; border-collapse: collapse; background: white; margin-top: 20px; }
         th, td { padding: 10px; border: 1px solid #ccc; }
+        .message {
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+            font-weight: bold;
+            text-align: center;
+        }
+        .success { background-color: #d4edda; color: #155724; }
+        .error { background-color: #f8d7da; color: #721c24; }
+        .warning { background-color: #fff3cd; color: #856404; }
+        .info { background-color: #d1ecf1; color: #0c5460; }
     </style>
     <script>
         function addItem() {
@@ -54,6 +58,25 @@
 
 <h2>Cashier POS - Billing</h2>
 
+<%
+    String status = request.getParameter("status");
+    String error = request.getParameter("error");
+%>
+
+<% if ("added".equals(status)) { %>
+<div class="message success">✅ Product added to bill!</div>
+<% } else if ("notfound".equals(error)) { %>
+<div class="message error">❌ Product not found! Please check the ID.</div>
+<% } else if ("invalid".equals(error)) { %>
+<div class="message warning">⚠️ Invalid input. Please check values.</div>
+<% } else if ("billed".equals(status)) { %>
+<div class="message info">🧾 Bill generated successfully!</div>
+<% } else if ("empty".equals(error)) { %>
+<div class="message error">🛑 Cannot bill. The cart is empty.</div>
+<% } else if ("saving".equals(error)) { %>
+<div class="message error">❌ Error saving the bill. Please try again.</div>
+<% } %>
+
 <!-- Product Entry -->
 <div>
     <input type="number" id="productId" placeholder="Enter Product ID">
@@ -70,7 +93,7 @@
     <%
         List<CartItem> cart = (List<CartItem>) session.getAttribute("cart");
         double total = 0;
-        if (cart != null) {
+        if (cart != null && !cart.isEmpty()) {
             for (CartItem item : cart) {
                 double rowTotal = item.getTotal();
                 total += rowTotal;

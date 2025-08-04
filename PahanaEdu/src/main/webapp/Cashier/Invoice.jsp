@@ -51,8 +51,17 @@
   <%  } } %>
   </tbody>
 </table>
+<%
+  double discount = session.getAttribute("discount") != null ? (double) session.getAttribute("discount") : 0.0;
+  double serviceCharge = session.getAttribute("serviceCharge") != null ? (double) session.getAttribute("serviceCharge") : 0.0;
+  double totalAmount = session.getAttribute("totalAmount") != null ? (double) session.getAttribute("totalAmount") : 0.0;
+%>
 
-<h3 class="right">Total: Rs. <%= String.format("%.2f", grandTotal) %></h3>
+<h3 class="right">Subtotal: Rs. <%= String.format("%.2f", grandTotal) %></h3>
+<h3 class="right">Discount: Rs. <%= String.format("%.2f", discount) %></h3>
+<h3 class="right">Service Charge: Rs. <%= String.format("%.2f", serviceCharge) %></h3>
+<h2 class="right">Total: Rs. <%= String.format("%.2f", totalAmount) %></h2>
+
 <div class="btn right">
   <button onclick="window.print()">🖨️ Print</button>
   <a href="billing.jsp">🔙 New Bill</a>
