@@ -22,7 +22,7 @@ public class ProductAddServlet extends HttpServlet {
             resp.sendRedirect("products");
         } catch (Exception e) {
             e.printStackTrace();
-            resp.sendRedirect("AdminHome.jsp?error=add");
+            resp.sendRedirect("ProductForm.jsp?error=add");
         }
     }
 }

@@ -28,13 +28,13 @@ public class ViewProductsController extends HttpServlet {
             List<ProductDTO> products = productService.getAllProductViews();
             req.setAttribute("products", products);
             
-            RequestDispatcher dispatcher = req.getRequestDispatcher("/view-products.jsp");
+            RequestDispatcher dispatcher = req.getRequestDispatcher("/ProductForm.jsp");
             dispatcher.forward(req, resp);
             
         } catch (Exception e) {
             LOGGER.log(Level.SEVERE, "Error retrieving products", e);
             req.setAttribute("error", "Failed to load products");
-            RequestDispatcher dispatcher = req.getRequestDispatcher("/view-products.jsp");
+            RequestDispatcher dispatcher = req.getRequestDispatcher("/ProductForm.jsp");
             dispatcher.forward(req, resp);
         }
     }

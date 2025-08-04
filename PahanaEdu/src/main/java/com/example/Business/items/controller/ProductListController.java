@@ -23,7 +23,7 @@ public class ProductListController extends HttpServlet {
             throws ServletException, IOException {
         List<ProductDTO> productList = productService.getAllProductViews();
         req.setAttribute("Product", productList); // match JSP variable name
-        RequestDispatcher dispatcher = req.getRequestDispatcher("/Admin/Products/view-products.jsp");
+        RequestDispatcher dispatcher = req.getRequestDispatcher("/Admin/Products/ProductForm.jsp");
         dispatcher.forward(req, resp);
     }
 }
