@@ -39,7 +39,7 @@ public class LoginController extends HttpServlet {
                 if ("admin".equals(userType)) {
                     resp.sendRedirect("Admin/AdminHome.jsp");
                 } else {
-                    resp.sendRedirect("Cashier/CashierHome.jsp");
+                    resp.sendRedirect("Cashier/billing.jsp");
                 }
 
             } else {

@@ -16,18 +16,12 @@
     <meta charset="UTF-8">
     <title>Cashier Dashboard - Pahana Edu</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.tailwindcss.com"></script>
+<%--    <script src="https://cdn.tailwindcss.com"></script>--%>
 </head>
 
 
 <body class="bg-green-50 font-sans">
-
-
-
-
 <div class="flex min-h-screen">
-
-    <jsp:include page="NavigationBar/NavBar.jsp" />
 
 <%--    <aside class="w-60 bg-white p-6 border-r">--%>
 <%--        <div class="text-2xl font-bold text-green-600 mb-10">Pahana Edu</div>--%>
@@ -50,12 +44,7 @@
         <div class="flex justify-between items-center mb-6">
             <input type="text" placeholder="Search books..." class="w-1/3 p-2 border rounded-lg" />
             <div class="flex items-center gap-4">
-                <span class="text-sm text-gray-600">
-                    <%
-                        String loggedInUser = (String) session.getAttribute("username");
-                    %>
-                <span class="text-sm text-gray-600"><%= loggedInUser != null ? loggedInUser : "Cashiers" %></span>
-                </span>
+                <span class="text-sm text-gray-600">Cashier</span>
                 <div class="w-8 h-8 rounded-full bg-gray-300"></div>
             </div>
         </div>
