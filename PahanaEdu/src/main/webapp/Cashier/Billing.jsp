@@ -57,6 +57,8 @@
 <body>
 
 <h2>Cashier POS - Billing</h2>
+<button type="submit"><a href="customer-register.jsp">➕ Add Customers</a></button>
+<button type="submit"><a href="customers">🧾 Manage Customers</a></button>
 
 <%
     String status = request.getParameter("status");

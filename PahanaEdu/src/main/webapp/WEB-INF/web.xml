@@ -24,4 +24,20 @@
         <servlet-name>CheckoutServlet</servlet-name>
         <url-pattern>/Cashier/checkout</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>CustomerRegisterServlet</servlet-name>
+        <servlet-class>com.example.CustomerRegisterServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CustomerRegisterServlet</servlet-name>
+        <url-pattern>/Cashier/register-customer</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>CustomerListServlet</servlet-name>
+        <servlet-class>com.example.CustomerListServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CustomerListServlet</servlet-name>
+        <url-pattern>/Cashier/customers</url-pattern>
+    </servlet-mapping>
 </web-app>
