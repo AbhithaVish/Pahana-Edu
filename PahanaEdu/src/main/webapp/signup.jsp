@@ -9,7 +9,7 @@
 <html>
 <head>
     <title>Sign up Form</title>
-<%--    <link rel="stylesheet" href="style.css">--%>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <section>

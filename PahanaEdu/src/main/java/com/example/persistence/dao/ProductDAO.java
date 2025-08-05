@@ -15,7 +15,7 @@ public class ProductDAO {
     private static final String SELECT_ALL_PRODUCTS = "SELECT id, name, description, price FROM products";
 
     public boolean addProduct(ProductDTO product) throws SQLException {
-        try (Connection conn = DBConn.getConnection("login");
+        try (Connection conn = DBConn.getConnection();
              PreparedStatement stmt = conn.prepareStatement(INSERT_PRODUCT_SQL)) {
             
             stmt.setString(1, product.getName());
@@ -30,7 +30,7 @@ public class ProductDAO {
     public List<Product> getAllProductViews() throws SQLException {
         List<Product> products = new ArrayList<>();
 
-        try (Connection conn = DBConn.getConnection("login");
+        try (Connection conn = DBConn.getConnection();
              PreparedStatement stmt = conn.prepareStatement(SELECT_ALL_PRODUCTS);
              ResultSet rs = stmt.executeQuery()) {
 

@@ -17,7 +17,7 @@ public class DBConn {
         }
     }
 
-    public static Connection getConnection(String login) throws SQLException {
+    public static Connection getConnection() throws SQLException {
         return DriverManager.getConnection(URL, USER, PASS);
     }
 

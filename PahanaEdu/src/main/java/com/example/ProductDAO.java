@@ -7,7 +7,7 @@ import java.util.*;
 public class ProductDAO {
     public List<Product> getAllProducts() throws SQLException {
         List<Product> list = new ArrayList<>();
-        try (Connection conn = DBConn.getConnection("getAll");
+        try (Connection conn = DBConn.getConnection();
              PreparedStatement ps = conn.prepareStatement("SELECT * FROM products");
              ResultSet rs = ps.executeQuery()) {
 
@@ -24,7 +24,7 @@ public class ProductDAO {
     }
 
     public Product getProductById(int id) throws SQLException {
-        try (Connection conn = DBConn.getConnection("getById");
+        try (Connection conn = DBConn.getConnection();
              PreparedStatement ps = conn.prepareStatement("SELECT * FROM products WHERE id = ?")) {
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
@@ -42,7 +42,7 @@ public class ProductDAO {
     }
 
     public void insertProduct(Product p) throws SQLException {
-        try (Connection conn = DBConn.getConnection("insert");
+        try (Connection conn = DBConn.getConnection();
              PreparedStatement ps = conn.prepareStatement("INSERT INTO products (name, description, price) VALUES (?, ?, ?)")) {
             ps.setString(1, p.getName());
             ps.setString(2, p.getDescription());
@@ -52,7 +52,7 @@ public class ProductDAO {
     }
 
     public void updateProduct(Product p) throws SQLException {
-        try (Connection conn = DBConn.getConnection("update");
+        try (Connection conn = DBConn.getConnection();
              PreparedStatement ps = conn.prepareStatement("UPDATE products SET name=?, description=?, price=? WHERE id=?")) {
             ps.setString(1, p.getName());
             ps.setString(2, p.getDescription());
@@ -63,7 +63,7 @@ public class ProductDAO {
     }
 
     public void deleteProduct(int id) throws SQLException {
-        try (Connection conn = DBConn.getConnection("delete");
+        try (Connection conn = DBConn.getConnection();
              PreparedStatement ps = conn.prepareStatement("DELETE FROM products WHERE id = ?")) {
             ps.setInt(1, id);
             ps.executeUpdate();
