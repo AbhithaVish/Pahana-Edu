@@ -1,12 +1,12 @@
-package com.example.Business.register.cashier.dto;
+package com.example.Business.register.dto;
 
-public class CusRegDTO {
+public class CashierDTO {
     private String name;
     private String email;
     private String username;
     private String password;
 
-    public CusRegDTO(String name, String email, String username, String password) {
+    public CashierDTO(String name, String email, String username, String password) {
         this.name = name;
         this.email = email;
         this.username = username;

@@ -6,9 +6,9 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page import="com.example.Product" %>
+<%@ page import="com.example.persistence.model.Products" %>
 <%
-  Product product = (Product) request.getAttribute("product");
+  Products product = (Products) request.getAttribute("product");
   boolean isEdit = (product != null);
 %>
 
@@ -38,6 +38,7 @@
   </style>
 </head>
 <body>
+<jsp:include page="../NavigationBar/NavBar.jsp" />
 
 <div class="form-container">
   <h2><%= isEdit ? "Edit Product" : "Add New Product" %></h2>

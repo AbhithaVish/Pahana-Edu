@@ -6,61 +6,65 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page import="java.util.List" %>
-<%@ page import="com.example.Customer" %>
+<%@ page import="com.example.persistence.model.Customer" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <title>Customer List</title>
-  <style>
-    body { font-family: Arial; padding: 30px; background-color: #f4f4f4; }
-    .container {
-      max-width: 800px; margin: auto; background: white;
-      padding: 20px; border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    }
-    table { width: 100%; border-collapse: collapse; margin-top: 20px; }
-    th, td {
-      padding: 12px; text-align: left; border-bottom: 1px solid #ddd;
-    }
-    h2 { text-align: center; }
-    .add-btn {
-      float: right; margin-bottom: 10px;
-      background: green; color: white;
-      border: none; padding: 10px 15px;
-      border-radius: 5px; text-decoration: none;
-    }
-    .add-btn:hover { background: darkgreen; }
-  </style>
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
+<body class="bg-gray-900 text-white min-h-screen font-sans p-6">
 
-<div class="container">
-  <h2>📋 Registered Customers</h2>
-  <a href="customer-register.jsp" class="add-btn">➕ Add Customer</a>
+<div class="max-w-5xl mx-auto bg-gray-800 rounded-lg shadow-lg p-6">
+  <!-- Header -->
+  <div class="flex justify-between items-center mb-6">
+    <a href="billing.jsp"
+       class="bg-green-600 hover:bg-green-700 text-white font-semibold px-4 py-2 rounded shadow">
+      📃 Cashier
+    </a>
+    <h2 class="text-2xl font-bold">📋 Registered Customers</h2>
+    <a href="customer-register.jsp"
+       class="bg-green-600 hover:bg-green-700 text-white font-semibold px-4 py-2 rounded shadow">
+      ➕ Add Customer
+    </a>
+  </div>
 
   <%
     List<Customer> customers = (List<Customer>) request.getAttribute("customerList");
     if (customers != null && !customers.isEmpty()) {
   %>
-  <table>
-    <thead>
-    <tr><th>NIC</th><th>Name</th><th>Email</th><th>Phone</th></tr>
-    </thead>
-    <tbody>
-    <% for (Customer customer : customers) { %>
-    <tr>
-      <td><%= customer.getNic() %></td>
-      <td><%= customer.getName() %></td>
-      <td><%= customer.getEmail() %></td>
-      <td><%= customer.getPhone() %></td>
-    </tr>
-    <% } %>
-    </tbody>
-  </table>
+
+  <!-- Customer Table -->
+  <div class="overflow-x-auto">
+    <table class="w-full table-auto text-sm text-left border border-gray-700">
+      <thead class="bg-gray-700 text-xs uppercase">
+      <tr>
+        <th class="px-4 py-3 border border-gray-700">NIC</th>
+        <th class="px-4 py-3 border border-gray-700">Name</th>
+        <th class="px-4 py-3 border border-gray-700">Email</th>
+        <th class="px-4 py-3 border border-gray-700">Phone</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% for (Customer customer : customers) { %>
+      <tr class="border-t border-gray-700 hover:bg-gray-700/50">
+        <td class="px-4 py-2 border border-gray-700"><%= customer.getNic() %></td>
+        <td class="px-4 py-2 border border-gray-700"><%= customer.getName() %></td>
+        <td class="px-4 py-2 border border-gray-700"><%= customer.getEmail() %></td>
+        <td class="px-4 py-2 border border-gray-700"><%= customer.getPhone() %></td>
+      </tr>
+      <% } %>
+      </tbody>
+    </table>
+  </div>
+
   <% } else { %>
-  <p>No customers found.</p>
+  <!-- No Data Message -->
+  <div class="text-center py-8 text-gray-400 text-lg">
+    🚫 No customers found.
+  </div>
   <% } %>
 </div>
 

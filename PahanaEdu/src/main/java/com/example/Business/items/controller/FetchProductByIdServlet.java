@@ -1,7 +1,8 @@
-package com.example;
+package com.example.Business.items.controller;
 
+import com.example.persistence.model.Products;
+import com.example.persistence.dao.ProductsDAO;
 import com.google.gson.Gson;
-import jakarta.servlet.*;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
 
@@ -11,8 +12,8 @@ import java.io.IOException;
 public class FetchProductByIdServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         int productId = Integer.parseInt(req.getParameter("id"));
-        ProductDAO dao = new ProductDAO();
-        Product product = null;
+        ProductsDAO dao = new ProductsDAO();
+        Products product = null;
 
         try {
             product = dao.getProductById(productId);

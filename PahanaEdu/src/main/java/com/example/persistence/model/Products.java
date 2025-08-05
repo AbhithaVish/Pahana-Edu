@@ -1,6 +1,6 @@
-package com.example;
+package com.example.persistence.model;
 
-public class Product {
+public class Products {
     private int id;
     private String name;
     private String description;

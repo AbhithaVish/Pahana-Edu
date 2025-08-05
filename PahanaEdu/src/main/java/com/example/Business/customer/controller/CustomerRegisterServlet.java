@@ -1,4 +1,4 @@
-package com.example;
+package com.example.Business.customer.controller;
 
 import com.example.util.DBConn;
 import jakarta.servlet.ServletException;

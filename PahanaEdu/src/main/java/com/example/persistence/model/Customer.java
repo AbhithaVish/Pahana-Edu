@@ -1,4 +1,4 @@
-package com.example;
+package com.example.persistence.model;
 
 public class Customer {
     private String nic;

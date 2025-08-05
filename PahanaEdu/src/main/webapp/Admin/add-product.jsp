@@ -12,8 +12,8 @@
 <head>
   <meta charset="UTF-8">
   <title>Add Product</title>
-<%--  <script src="https://cdn.tailwindcss.com"></script>--%>
-<%--  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">--%>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
 </head>
 <body class="bg-gray-50 font-sans">
 
@@ -26,7 +26,7 @@
 
 <div class="flex min-h-screen">
 
-<%--  <jsp:include page="../NavigationBar/NavBar.jsp" />--%>
+  <jsp:include page="../NavigationBar/NavBar.jsp" />
 
   <!-- Main content -->
   <main class="flex-1 ml-0 md:ml-64 p-6">

@@ -3,25 +3,32 @@ package com.example.persistence.dao;
 import com.example.persistence.model.User;
 import com.example.util.DBConn;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UserDAO {
 
-    private static final String INSERT_USER_SQL =
-            "INSERT INTO login_tbl(name, username, email, password) VALUES (?, ?, ?, ?)";
+    // Existing INSERT method...
 
-    public boolean saveUser(User user) throws SQLException {
+    public List<User> getAllCashiers() throws SQLException {
+        List<User> cashiers = new ArrayList<>();
+        String sql = "SELECT id, name, email, username FROM login_tbl WHERE role = 'cashier'";
+
         try (Connection conn = DBConn.getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(INSERT_USER_SQL)) {
+             PreparedStatement ps = conn.prepareStatement(sql);
+             ResultSet rs = ps.executeQuery()) {
 
-            pstmt.setString(1, user.getName());
-            pstmt.setString(2, user.getUsername());
-            pstmt.setString(3, user.getEmail());
-            pstmt.setString(4, user.getPassword());
-
-            return pstmt.executeUpdate() > 0;
+            while (rs.next()) {
+                User cashier = new User();
+                cashier.setId(rs.getInt("id"));
+                cashier.setName(rs.getString("name"));
+                cashier.setEmail(rs.getString("email"));
+                cashier.setUsername(rs.getString("username"));
+                cashiers.add(cashier);
+            }
         }
+
+        return cashiers;
     }
 }

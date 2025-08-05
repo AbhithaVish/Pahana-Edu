@@ -1,7 +1,7 @@
-package com.example.Business.register.cashier.controller;
+package com.example.Business.register.controller;
 
-import com.example.Business.register.cashier.dto.CusRegDTO;
-import com.example.Business.register.cashier.service.CusRegService;
+import com.example.Business.register.dto.CashierDTO;
+import com.example.Business.register.service.CashierService;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -18,7 +18,7 @@ import java.util.logging.Logger;
 public class CusRegController extends HttpServlet {
 
     private static final Logger LOGGER = Logger.getLogger(CusRegController.class.getName());
-    private final CusRegService regService = new CusRegService();
+    private final CashierService regService = new CashierService();
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
@@ -29,7 +29,7 @@ public class CusRegController extends HttpServlet {
         String username = req.getParameter("username");
         String password = req.getParameter("password");
 
-        CusRegDTO dto = new CusRegDTO(name, email, username, password);
+        CashierDTO dto = new CashierDTO(name, email, username, password);
         RequestDispatcher dispatcher = req.getRequestDispatcher("signup.jsp");
 
         try {

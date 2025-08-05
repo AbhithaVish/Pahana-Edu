@@ -1,6 +1,6 @@
-package com.example;
+package com.example.Business.customer.controller;
 
-import com.example.Customer;
+import com.example.persistence.model.Customer;
 import com.example.util.DBConn;
 
 import jakarta.servlet.ServletException;

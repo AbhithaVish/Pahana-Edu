@@ -9,7 +9,7 @@
 
     <servlet>
         <servlet-name>AddToCartServlet</servlet-name>
-        <servlet-class>com.example.AddToCartServlet</servlet-class>
+        <servlet-class>com.example.Business.billing.controller.AddToCartServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>AddToCartServlet</servlet-name>
@@ -18,17 +18,15 @@
 
     <servlet>
         <servlet-name>CheckoutServlet</servlet-name>
-        <servlet-class>com.example.CheckoutServlet</servlet-class>
+        <servlet-class>com.example.Business.billing.controller.CheckoutServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>CheckoutServlet</servlet-name>
         <url-pattern>/Cashier/checkout</url-pattern>
     </servlet-mapping>
-
-
     <servlet>
         <servlet-name>CustomerRegisterServlet</servlet-name>
-        <servlet-class>com.example.CustomerRegisterServlet</servlet-class>
+        <servlet-class>com.example.Business.customer.controller.CustomerRegisterServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>CustomerRegisterServlet</servlet-name>
@@ -36,7 +34,7 @@
     </servlet-mapping>
     <servlet>
         <servlet-name>CustomerListServlet</servlet-name>
-        <servlet-class>com.example.CustomerListServlet</servlet-class>
+        <servlet-class>com.example.Business.customer.controller.CustomerListServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>CustomerListServlet</servlet-name>

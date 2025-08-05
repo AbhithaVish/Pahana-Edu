@@ -1,5 +1,8 @@
-package com.example;
+package com.example.Business.billing.controller;
 
+import com.example.persistence.model.CartItem;
+import com.example.persistence.model.Products;
+import com.example.persistence.dao.ProductsDAO;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
 import jakarta.servlet.ServletException;
@@ -29,8 +32,8 @@ public class AddToCartServlet extends HttpServlet {
             return;
         }
 
-        ProductDAO dao = new ProductDAO();
-        Product product;
+        ProductsDAO dao = new ProductsDAO();
+        Products product;
         try {
             product = dao.getProductById(productId);
         } catch (SQLException e) {
@@ -64,7 +67,6 @@ public class AddToCartServlet extends HttpServlet {
         }
 
         session.setAttribute("cart", cart);
-
         response.sendRedirect("billing.jsp?status=added");
     }
 }

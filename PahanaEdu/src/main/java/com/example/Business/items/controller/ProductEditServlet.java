@@ -1,5 +1,7 @@
-package com.example;
+package com.example.Business.items.controller;
 
+import com.example.persistence.model.Products;
+import com.example.persistence.dao.ProductsDAO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -13,8 +15,8 @@ public class ProductEditServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
             int id = Integer.parseInt(req.getParameter("id"));
-            ProductDAO dao = new ProductDAO();
-            Product product = dao.getProductById(id);
+            ProductsDAO dao = new ProductsDAO();
+            Products product = dao.getProductById(id);
             req.setAttribute("product", product);
             req.getRequestDispatcher("/Admin/Products/ProductForm.jsp").forward(req, resp);
         } catch (Exception e) {
@@ -25,13 +27,13 @@ public class ProductEditServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
-            Product p = new Product();
+            Products p = new Products();
             p.setId(Integer.parseInt(req.getParameter("id")));
             p.setName(req.getParameter("name"));
             p.setDescription(req.getParameter("description"));
             p.setPrice(Double.parseDouble(req.getParameter("price")));
 
-            ProductDAO dao = new ProductDAO();
+            ProductsDAO dao = new ProductsDAO();
             dao.updateProduct(p);
             resp.sendRedirect("products");
         } catch (Exception e) {

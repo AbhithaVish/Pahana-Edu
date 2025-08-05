@@ -1,18 +1,19 @@
-package com.example;
+package com.example.persistence.dao;
 
+import com.example.persistence.model.Products;
 import com.example.util.DBConn;
 import java.sql.*;
 import java.util.*;
 
-public class ProductDAO {
-    public List<Product> getAllProducts() throws SQLException {
-        List<Product> list = new ArrayList<>();
+public class ProductsDAO {
+    public List<Products> getAllProducts() throws SQLException {
+        List<Products> list = new ArrayList<>();
         try (Connection conn = DBConn.getConnection();
              PreparedStatement ps = conn.prepareStatement("SELECT * FROM products");
              ResultSet rs = ps.executeQuery()) {
 
             while (rs.next()) {
-                Product p = new Product();
+                Products p = new Products();
                 p.setId(rs.getInt("id"));
                 p.setName(rs.getString("name"));
                 p.setDescription(rs.getString("description"));
@@ -23,14 +24,14 @@ public class ProductDAO {
         return list;
     }
 
-    public Product getProductById(int id) throws SQLException {
+    public Products getProductById(int id) throws SQLException {
         try (Connection conn = DBConn.getConnection();
              PreparedStatement ps = conn.prepareStatement("SELECT * FROM products WHERE id = ?")) {
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {
-                Product p = new Product();
+                Products p = new Products();
                 p.setId(rs.getInt("id"));
                 p.setName(rs.getString("name"));
                 p.setDescription(rs.getString("description"));
@@ -41,7 +42,7 @@ public class ProductDAO {
         return null;
     }
 
-    public void insertProduct(Product p) throws SQLException {
+    public void insertProduct(Products p) throws SQLException {
         try (Connection conn = DBConn.getConnection();
              PreparedStatement ps = conn.prepareStatement("INSERT INTO products (name, description, price) VALUES (?, ?, ?)")) {
             ps.setString(1, p.getName());
@@ -51,7 +52,7 @@ public class ProductDAO {
         }
     }
 
-    public void updateProduct(Product p) throws SQLException {
+    public void updateProduct(Products p) throws SQLException {
         try (Connection conn = DBConn.getConnection();
              PreparedStatement ps = conn.prepareStatement("UPDATE products SET name=?, description=?, price=? WHERE id=?")) {
             ps.setString(1, p.getName());

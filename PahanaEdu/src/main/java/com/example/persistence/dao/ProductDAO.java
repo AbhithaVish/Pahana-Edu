@@ -47,4 +47,14 @@ public class ProductDAO {
 
         return products;
     }
+
+    public static int getTotalProducts() throws SQLException {
+        String sql = "SELECT COUNT(*) FROM products";
+        try (Connection con = DBConn.getConnection();
+             PreparedStatement ps = con.prepareStatement(sql);
+             ResultSet rs = ps.executeQuery()) {
+            if (rs.next()) return rs.getInt(1);
+        }
+        return 0;
+    }
 }

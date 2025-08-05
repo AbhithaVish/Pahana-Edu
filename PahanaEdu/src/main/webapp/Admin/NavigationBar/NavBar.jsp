@@ -37,22 +37,22 @@
     <aside id="sidebar" class="w-64 bg-white border-r p-6 hidden md:block fixed md:static md:translate-x-0 transition-transform duration-300 ease-in-out z-40 h-screen">
         <div class="text-2xl font-bold text-green-600 mb-10">Pahana Edu Admin</div>
         <nav class="space-y-4 text-gray-700">
-            <a href="AdminHome.jsp" class="block font-semibold text-green-600 hover:text-green-800">
+            <a href="Admin/AdminHome.jsp" class="block font-semibold text-green-600 hover:text-green-800">
                 <i class='bx bx-home mr-2'></i> Dashboard
             </a>
-            <a href="#" class="block hover:text-green-800">
+            <a href="${pageContext.request.contextPath}/Admin/cashiers.jsp" class="block hover:text-green-800">
                 <i class='bx bx-user mr-2'></i> Cashier
             </a>
-            <a href="../Admin/Products/add-product.jsp" class="block hover:text-green-800">
+            <a href="${pageContext.request.contextPath}/Admin/Products/add-product.jsp" class="block hover:text-green-800">
                 <i class='bx bx-file mr-2'></i> Add Products
             </a>
-            <a href="../Admin/Products/ProductForm.jsp" class="block hover:text-green-800">
+            <a href="${pageContext.request.contextPath}/view-products" class="block hover:text-green-800">
                 <i class='bx bx-file mr-2'></i> View Products
             </a>
             <a href="#" class="block hover:text-green-800">
                 <i class='bx bx-cog mr-2'></i> Settings
             </a>
-            <a href="login.jsp" class="block text-red-500 mt-10 hover:text-red-700">
+            <a href="loin.jsp" class="block text-red-500 mt-10 hover:text-red-700">
                 <i class='bx bx-log-out mr-2'></i> Logout
             </a>
         </nav>
