@@ -51,6 +51,7 @@
   <%  } } %>
   </tbody>
 </table>
+
 <%
   double discount = session.getAttribute("discount") != null ? (double) session.getAttribute("discount") : 0.0;
   double serviceCharge = session.getAttribute("serviceCharge") != null ? (double) session.getAttribute("serviceCharge") : 0.0;

@@ -1,16 +1,21 @@
 package com.example;
 
+
 import com.example.util.DBConn;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
 
 import java.io.IOException;
+
 import java.sql.*;
 import java.util.List;
+
 @WebServlet("/checkout")
 public class CheckoutServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         HttpSession session = request.getSession();
+
+main
         List<CartItem> cart = (List<CartItem>) session.getAttribute("cart");
 
         if (cart == null || cart.isEmpty()) {

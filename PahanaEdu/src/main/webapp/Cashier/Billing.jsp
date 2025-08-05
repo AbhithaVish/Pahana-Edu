@@ -1,3 +1,11 @@
+
+<%--
+  Created by IntelliJ IDEA.
+  User: abhit
+  Date: 8/4/2025
+  Time: 6:59 AM
+  To change this template use File | Settings | File Templates.
+--%>
 <%@ page import="com.example.CartItem" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="java.util.*" %>
@@ -11,6 +19,7 @@
         input, button { padding: 8px; margin: 4px; }
         table { width: 100%; border-collapse: collapse; background: white; margin-top: 20px; }
         th, td { padding: 10px; border: 1px solid #ccc; }
+
         .message {
             padding: 10px;
             margin-bottom: 10px;
@@ -22,6 +31,7 @@
         .error { background-color: #f8d7da; color: #721c24; }
         .warning { background-color: #fff3cd; color: #856404; }
         .info { background-color: #d1ecf1; color: #0c5460; }
+
     </style>
     <script>
         function addItem() {
@@ -96,6 +106,7 @@
         List<CartItem> cart = (List<CartItem>) session.getAttribute("cart");
         double total = 0;
         if (cart != null && !cart.isEmpty()) {
+
             for (CartItem item : cart) {
                 double rowTotal = item.getTotal();
                 total += rowTotal;
