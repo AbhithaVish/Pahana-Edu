@@ -9,7 +9,7 @@
     if (userSession != null) {
         username = (String) userSession.getAttribute("username");
     } else {
-        response.sendRedirect("login.jsp"); // Redirect if session is invalid
+        response.sendRedirect("login.jsp");
         return;
     }
 %>
@@ -58,7 +58,7 @@
     <div class="flex justify-between items-center mb-6">
         <h1 class="text-3xl font-bold text-white">🧾 POS Billing System</h1>
         <div class="text-sm text-gray-300">
-            Welcome !  <span class="font-semibold text-white"><%= username != null ? username : "Guest" %></span>
+            Welcome, <span class="font-semibold text-white"><%= username != null ? username : "Guest" %></span>
             <a href="${pageContext.request.contextPath}login.jsp" class="ml-4 text-red-400 hover:text-red-600">Logout</a>
         </div>
     </div>
@@ -114,6 +114,13 @@
         </button>
     </div>
 
+    <!-- Clear Cart Button -->
+    <div class="flex justify-end mb-2 gap-2">
+        <a href="clear-cart"
+           class="bg-red-600 hover:bg-red-700 text-white font-semibold px-4 py-2 rounded">
+            🗑️ Clear Cart
+        </a>
+    </div>
 
     <!-- Bill Table -->
     <div class="overflow-x-auto bg-gray-800 rounded">
@@ -122,10 +129,11 @@
             <tr>
                 <th class="px-4 py-2">ID</th>
                 <th class="px-4 py-2">Name</th>
-                <th class="px-4 py-2">Category</th> <!-- Added category -->
+                <th class="px-4 py-2">Category</th>
                 <th class="px-4 py-2">Price</th>
                 <th class="px-4 py-2">Qty</th>
                 <th class="px-4 py-2">Total</th>
+                <th class="px-4 py-2">Action</th>
             </tr>
             </thead>
             <tbody class="text-sm">
@@ -140,14 +148,18 @@
             <tr class="border-t border-gray-600">
                 <td class="px-4 py-2"><%= item.getProduct().getId() %></td>
                 <td class="px-4 py-2"><%= item.getProduct().getName() %></td>
-                <td class="px-4 py-2"><%= item.getProduct().getCategory() %></td> <!-- Show category -->
+                <td class="px-4 py-2"><%= item.getProduct().getCategory() %></td>
                 <td class="px-4 py-2">Rs. <%= String.format("%.2f", item.getProduct().getPrice()) %></td>
                 <td class="px-4 py-2"><%= item.getQuantity() %></td>
                 <td class="px-4 py-2">Rs. <%= String.format("%.2f", rowTotal) %></td>
+                <td class="px-4 py-2">
+                    <a href="remove-item?id=<%= item.getProduct().getId() %>"
+                       class="text-red-500 hover:text-red-700 font-semibold">❌ Remove</a>
+                </td>
             </tr>
             <% } } else { %>
             <tr>
-                <td colspan="6" class="text-center px-4 py-4 text-gray-400">🛒 Cart is empty</td>
+                <td colspan="7" class="text-center px-4 py-4 text-gray-400">🛒 Cart is empty</td>
             </tr>
             <% } %>
             </tbody>
@@ -157,7 +169,6 @@
     <div class="text-right mt-4 text-xl font-bold">
         Total: Rs. <%= String.format("%.2f", total) %>
     </div>
-
 
 </div>
 

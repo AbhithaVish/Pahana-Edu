@@ -46,7 +46,7 @@
             <a href="${pageContext.request.contextPath}/view-products" class="block hover:text-green-800">
                 <i class='bx bx-file mr-2'></i> View Products
             </a>
-            <a href="#" class="block hover:text-green-800">
+            <a href="${pageContext.request.contextPath}/SalesReport" class="block hover:text-green-800">
                 <i class='bx bx-cog mr-2'></i> Sales
             </a>
             <a href="login.jsp" class="block text-red-500 mt-10 hover:text-red-700">

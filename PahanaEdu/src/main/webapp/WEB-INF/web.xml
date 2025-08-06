@@ -8,6 +8,7 @@
         <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
 
+    <!-- Add to Cart -->
     <servlet>
         <servlet-name>AddToCartServlet</servlet-name>
         <servlet-class>com.example.Business.billing.controller.AddToCartServlet</servlet-class>
@@ -17,6 +18,7 @@
         <url-pattern>/Cashier/add-to-cart</url-pattern>
     </servlet-mapping>
 
+    <!-- Checkout -->
     <servlet>
         <servlet-name>CheckoutServlet</servlet-name>
         <servlet-class>com.example.Business.billing.controller.CheckoutServlet</servlet-class>
@@ -26,6 +28,7 @@
         <url-pattern>/Cashier/checkout</url-pattern>
     </servlet-mapping>
 
+    <!-- Register Customer -->
     <servlet>
         <servlet-name>CustomerRegisterServlet</servlet-name>
         <servlet-class>com.example.Business.customer.controller.CustomerRegisterServlet</servlet-class>
@@ -35,5 +38,24 @@
         <url-pattern>/Cashier/register-customer</url-pattern>
     </servlet-mapping>
 
+    <!-- ❌ Remove Single Cart Item -->
+    <servlet>
+        <servlet-name>RemoveCartItemServlet</servlet-name>
+        <servlet-class>com.example.Business.billing.controller.RemoveCartItemServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>RemoveCartItemServlet</servlet-name>
+        <url-pattern>/Cashier/remove-item</url-pattern>
+    </servlet-mapping>
+
+    <!-- 🗑️ Clear Entire Cart -->
+    <servlet>
+        <servlet-name>ClearCartServlet</servlet-name>
+        <servlet-class>com.example.Business.billing.controller.ClearCartServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ClearCartServlet</servlet-name>
+        <url-pattern>/Cashier/clear-cart</url-pattern>
+    </servlet-mapping>
 
 </web-app>
