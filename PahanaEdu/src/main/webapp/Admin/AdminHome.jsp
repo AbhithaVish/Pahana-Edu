@@ -67,6 +67,11 @@
                     Product View
                 </button>
             </a>
+            <a href="${pageContext.request.contextPath}/SalesReport">
+                <button class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
+                    SalesReport
+                </button>
+            </a>
         </div>
 
         <!-- Sales Chart Placeholder -->

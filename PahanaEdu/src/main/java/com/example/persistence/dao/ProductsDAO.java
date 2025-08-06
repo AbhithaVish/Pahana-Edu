@@ -6,6 +6,7 @@ import java.sql.*;
 import java.util.*;
 
 public class ProductsDAO {
+
     public List<Products> getAllProducts() throws SQLException {
         List<Products> list = new ArrayList<>();
         try (Connection conn = DBConn.getConnection();
@@ -18,6 +19,8 @@ public class ProductsDAO {
                 p.setName(rs.getString("name"));
                 p.setDescription(rs.getString("description"));
                 p.setPrice(rs.getDouble("price"));
+                p.setCategory(rs.getString("category")); // new
+                p.setQuantity(rs.getInt("quantity"));     // new
                 list.add(p);
             }
         }
@@ -36,6 +39,8 @@ public class ProductsDAO {
                 p.setName(rs.getString("name"));
                 p.setDescription(rs.getString("description"));
                 p.setPrice(rs.getDouble("price"));
+                p.setCategory(rs.getString("category")); // new
+                p.setQuantity(rs.getInt("quantity"));     // new
                 return p;
             }
         }
@@ -44,21 +49,27 @@ public class ProductsDAO {
 
     public void insertProduct(Products p) throws SQLException {
         try (Connection conn = DBConn.getConnection();
-             PreparedStatement ps = conn.prepareStatement("INSERT INTO products (name, description, price) VALUES (?, ?, ?)")) {
+             PreparedStatement ps = conn.prepareStatement(
+                     "INSERT INTO products (name, description, price, category, quantity) VALUES (?, ?, ?, ?, ?)")) {
             ps.setString(1, p.getName());
             ps.setString(2, p.getDescription());
             ps.setDouble(3, p.getPrice());
+            ps.setString(4, p.getCategory());  // new
+            ps.setInt(5, p.getQuantity());     // new
             ps.executeUpdate();
         }
     }
 
     public void updateProduct(Products p) throws SQLException {
         try (Connection conn = DBConn.getConnection();
-             PreparedStatement ps = conn.prepareStatement("UPDATE products SET name=?, description=?, price=? WHERE id=?")) {
+             PreparedStatement ps = conn.prepareStatement(
+                     "UPDATE products SET name=?, description=?, price=?, category=?, quantity=? WHERE id=?")) {
             ps.setString(1, p.getName());
             ps.setString(2, p.getDescription());
             ps.setDouble(3, p.getPrice());
-            ps.setInt(4, p.getId());
+            ps.setString(4, p.getCategory());   // new
+            ps.setInt(5, p.getQuantity());      // new
+            ps.setInt(6, p.getId());
             ps.executeUpdate();
         }
     }
@@ -70,4 +81,16 @@ public class ProductsDAO {
             ps.executeUpdate();
         }
     }
+
+    public boolean updateProductQuantity(int productId, int newQuantity) throws SQLException {
+        String sql = "UPDATE products SET quantity = ? WHERE id = ?";
+        try (Connection conn = DBConn.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setInt(1, newQuantity);
+            ps.setInt(2, productId);
+            int affectedRows = ps.executeUpdate();
+            return affectedRows > 0;
+        }
+    }
+
 }

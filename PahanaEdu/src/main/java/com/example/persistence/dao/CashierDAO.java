@@ -1,51 +1,41 @@
 package com.example.persistence.dao;
 
+import com.example.persistence.model.Cashier;
 import com.example.persistence.model.User;
 import com.example.util.DBConn;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class CashierDAO {
 
-    private static final String INSERT_USER_SQL =
-            "INSERT INTO login_tbl(name, username, email, password) VALUES (?, ?, ?, ?)";
+    public List<Cashier> getAllCashiers() {
+        List<Cashier> cashierList = new ArrayList<>();
 
-    public boolean saveUser(User user) throws SQLException {
         try (Connection conn = DBConn.getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(INSERT_USER_SQL)) {
+             PreparedStatement stmt = conn.prepareStatement("SELECT * FROM login_tbl WHERE role = 'cashier'");
+             ResultSet rs = stmt.executeQuery()) {
 
-            pstmt.setString(1, user.getName());
-            pstmt.setString(2, user.getUsername());
-            pstmt.setString(3, user.getEmail());
-            pstmt.setString(4, user.getPassword());
-
-            return pstmt.executeUpdate() > 0;
-        }
-    }
-
-    public List<User> getAllCashiers() throws SQLException {
-        String sql = "SELECT * FROM login_tbl WHERE role = 'cashier'";
-        List<User> cashiers = new ArrayList<>();
-        try (Connection conn = DBConn.getConnection();
-             PreparedStatement ps = conn.prepareStatement(sql);
-             ResultSet rs = ps.executeQuery()) {
             while (rs.next()) {
-                User u = new User(
-                        rs.getString("name"),
-                        rs.getString("email"),
-                        rs.getString("username"),
-                        rs.getString("password")
-                );
-                u.setId(rs.getInt("id")); // if you have it
-                cashiers.add(u);
+                Cashier cashier = new Cashier();
+                cashier.setId(rs.getInt("id"));
+                cashier.setName(rs.getString("name"));
+                cashier.setUsername(rs.getString("username"));
+                cashier.setEmail(rs.getString("email"));
+                cashier.setProfile(rs.getString("profile"));
+
+                cashierList.add(cashier);
             }
+
+        } catch (SQLException e) {
+            e.printStackTrace(); // Always log SQL exceptions
         }
-        return cashiers;
+
+        return cashierList;
     }
 
+    public boolean saveUser(User user) {
+        return false;
+    }
 }

@@ -37,10 +37,19 @@
       <form action="${pageContext.request.contextPath}/addProduct" method="post" class="space-y-4">
         <input type="text" name="name" placeholder="Product Name" required
                class="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500" />
+
         <input type="text" name="description" placeholder="Description" required
                class="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500" />
-        <input type="number" name="price" placeholder="Price" step="0.01" required
+
+        <input type="text" name="category" placeholder="Category" required
                class="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500" />
+
+        <input type="number" name="quantity" placeholder="Quantity" min="0" required
+               class="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500" />
+
+        <input type="number" name="price" placeholder="Price" step="0.01" min="0" required
+               class="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500" />
+
         <button type="submit" class="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition">
           Add Product
         </button>

@@ -8,6 +8,7 @@ import jakarta.servlet.http.*;
 
 import java.io.IOException;
 
+
 @WebServlet("/fetch-product")
 public class FetchProductByIdServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
@@ -30,3 +31,4 @@ public class FetchProductByIdServlet extends HttpServlet {
         }
     }
 }
+

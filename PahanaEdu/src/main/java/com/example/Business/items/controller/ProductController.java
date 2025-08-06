@@ -1,9 +1,7 @@
 package com.example.Business.items.controller;
 
-
 import com.example.Business.items.dto.ProductDTO;
 import com.example.Business.items.service.ProductService;
-import com.example.persistence.model.Product;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -12,7 +10,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -28,19 +25,22 @@ public class ProductController extends HttpServlet {
 
         String name = req.getParameter("name");
         String description = req.getParameter("description");
+        String category = req.getParameter("category");  // new
+        String quantityStr = req.getParameter("quantity");  // new
         String priceStr = req.getParameter("price");
 
         RequestDispatcher dispatcher = req.getRequestDispatcher("/Admin/Products/add-product.jsp");
 
-
-
         try {
             double price = Double.parseDouble(priceStr);
-            ProductDTO dto = new ProductDTO(name, description, price);
+            int quantity = Integer.parseInt(quantityStr);  // parse quantity
+
+            ProductDTO dto = new ProductDTO(name, description, category, quantity, price);
+
             boolean success = productService.addProduct(dto);
             req.setAttribute("status", success ? "success" : "failed");
         } catch (NumberFormatException e) {
-            LOGGER.log(Level.SEVERE, "Invalid price format", e);
+            LOGGER.log(Level.SEVERE, "Invalid number format for price or quantity", e);
             req.setAttribute("status", "failed");
         } catch (Exception e) {
             LOGGER.log(Level.SEVERE, "Error adding product", e);

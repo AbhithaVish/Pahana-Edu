@@ -31,6 +31,8 @@ public class ProductEditServlet extends HttpServlet {
             p.setId(Integer.parseInt(req.getParameter("id")));
             p.setName(req.getParameter("name"));
             p.setDescription(req.getParameter("description"));
+            p.setCategory(req.getParameter("category"));
+            p.setQuantity(Integer.parseInt(req.getParameter("quantity")));
             p.setPrice(Double.parseDouble(req.getParameter("price")));
 
             ProductsDAO dao = new ProductsDAO();
@@ -42,3 +44,4 @@ public class ProductEditServlet extends HttpServlet {
         }
     }
 }
+

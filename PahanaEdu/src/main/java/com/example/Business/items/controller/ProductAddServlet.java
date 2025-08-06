@@ -12,11 +12,13 @@ import java.io.IOException;
 
 @WebServlet("/add-product")
 public class ProductAddServlet extends HttpServlet {
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         try {
             Products p = new Products();
             p.setName(req.getParameter("name"));
             p.setDescription(req.getParameter("description"));
+            p.setCategory(req.getParameter("category"));
+            p.setQuantity(Integer.parseInt(req.getParameter("quantity")));
             p.setPrice(Double.parseDouble(req.getParameter("price")));
 
             ProductsDAO dao = new ProductsDAO();

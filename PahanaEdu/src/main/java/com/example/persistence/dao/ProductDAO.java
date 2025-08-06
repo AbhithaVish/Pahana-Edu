@@ -3,6 +3,7 @@ package com.example.persistence.dao;
 import com.example.Business.items.dto.ProductDTO;
 import com.example.persistence.model.Product;
 import com.example.util.DBConn;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -11,17 +12,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ProductDAO {
-    private static final String INSERT_PRODUCT_SQL = "INSERT INTO products (name, description, price) VALUES (?, ?, ?)";
-    private static final String SELECT_ALL_PRODUCTS = "SELECT id, name, description, price FROM products";
+
+    // Updated SQL to include category and quantity
+    private static final String INSERT_PRODUCT_SQL =
+            "INSERT INTO products (name, description, price, category, quantity) VALUES (?, ?, ?, ?, ?)";
+
+    private static final String SELECT_ALL_PRODUCTS =
+            "SELECT id, name, description, price, category, quantity FROM products";
 
     public boolean addProduct(ProductDTO product) throws SQLException {
         try (Connection conn = DBConn.getConnection();
              PreparedStatement stmt = conn.prepareStatement(INSERT_PRODUCT_SQL)) {
-            
+
             stmt.setString(1, product.getName());
             stmt.setString(2, product.getDescription());
             stmt.setDouble(3, product.getPrice());
-            
+            stmt.setString(4, product.getCategory());   // new
+            stmt.setInt(5, product.getQuantity());      // new
+
             int rows = stmt.executeUpdate();
             return rows > 0;
         }
@@ -39,6 +47,8 @@ public class ProductDAO {
                         rs.getInt("id"),
                         rs.getString("name"),
                         rs.getString("description"),
+                        rs.getString("category"),  // new
+                        rs.getInt("quantity"),      // new
                         rs.getDouble("price")
                 );
                 products.add(product);

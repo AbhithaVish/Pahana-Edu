@@ -114,6 +114,7 @@
         </button>
     </div>
 
+
     <!-- Bill Table -->
     <div class="overflow-x-auto bg-gray-800 rounded">
         <table class="w-full table-auto text-left text-white">
@@ -121,6 +122,7 @@
             <tr>
                 <th class="px-4 py-2">ID</th>
                 <th class="px-4 py-2">Name</th>
+                <th class="px-4 py-2">Category</th> <!-- Added category -->
                 <th class="px-4 py-2">Price</th>
                 <th class="px-4 py-2">Qty</th>
                 <th class="px-4 py-2">Total</th>
@@ -138,13 +140,14 @@
             <tr class="border-t border-gray-600">
                 <td class="px-4 py-2"><%= item.getProduct().getId() %></td>
                 <td class="px-4 py-2"><%= item.getProduct().getName() %></td>
+                <td class="px-4 py-2"><%= item.getProduct().getCategory() %></td> <!-- Show category -->
                 <td class="px-4 py-2">Rs. <%= String.format("%.2f", item.getProduct().getPrice()) %></td>
                 <td class="px-4 py-2"><%= item.getQuantity() %></td>
                 <td class="px-4 py-2">Rs. <%= String.format("%.2f", rowTotal) %></td>
             </tr>
             <% } } else { %>
             <tr>
-                <td colspan="5" class="text-center px-4 py-4 text-gray-400">🛒 Cart is empty</td>
+                <td colspan="6" class="text-center px-4 py-4 text-gray-400">🛒 Cart is empty</td>
             </tr>
             <% } %>
             </tbody>
@@ -154,6 +157,7 @@
     <div class="text-right mt-4 text-xl font-bold">
         Total: Rs. <%= String.format("%.2f", total) %>
     </div>
+
 
 </div>
 
