@@ -1,8 +1,7 @@
 package com.example.Business.items.controller;
 
-import com.example.persistence.model.Products;
+import com.example.persistence.model.CashierProducts;
 import com.example.persistence.dao.ProductsDAO;
-import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -14,7 +13,7 @@ import java.io.IOException;
 public class ProductAddServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         try {
-            Products p = new Products();
+            CashierProducts p = new CashierProducts();
             p.setName(req.getParameter("name"));
             p.setDescription(req.getParameter("description"));
             p.setCategory(req.getParameter("category"));

@@ -11,7 +11,7 @@
     <!-- Add to Cart -->
     <servlet>
         <servlet-name>AddToCartServlet</servlet-name>
-        <servlet-class>com.example.Business.billing.controller.AddToCartServlet</servlet-class>
+        <servlet-class>com.example.Business.billing.AddToCartServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>AddToCartServlet</servlet-name>
@@ -21,7 +21,7 @@
     <!-- Checkout -->
     <servlet>
         <servlet-name>CheckoutServlet</servlet-name>
-        <servlet-class>com.example.Business.billing.controller.CheckoutServlet</servlet-class>
+        <servlet-class>com.example.Business.billing.CheckoutServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>CheckoutServlet</servlet-name>
@@ -31,7 +31,7 @@
     <!-- Register Customer -->
     <servlet>
         <servlet-name>CustomerRegisterServlet</servlet-name>
-        <servlet-class>com.example.Business.customer.controller.CustomerRegisterServlet</servlet-class>
+        <servlet-class>com.example.Business.customer.controller.CustomerCreateServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>CustomerRegisterServlet</servlet-name>
@@ -41,7 +41,7 @@
     <!-- ❌ Remove Single Cart Item -->
     <servlet>
         <servlet-name>RemoveCartItemServlet</servlet-name>
-        <servlet-class>com.example.Business.billing.controller.RemoveCartItemServlet</servlet-class>
+        <servlet-class>com.example.Business.billing.RemoveCartItemServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>RemoveCartItemServlet</servlet-name>
@@ -51,11 +51,53 @@
     <!-- 🗑️ Clear Entire Cart -->
     <servlet>
         <servlet-name>ClearCartServlet</servlet-name>
-        <servlet-class>com.example.Business.billing.controller.ClearCartServlet</servlet-class>
+        <servlet-class>com.example.Business.billing.ClearCartServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>ClearCartServlet</servlet-name>
         <url-pattern>/Cashier/clear-cart</url-pattern>
     </servlet-mapping>
+
+    <!-- Customer List Servlet -->
+    <servlet>
+        <servlet-name>CustomerListServlet</servlet-name>
+        <servlet-class>com.example.Business.customer.controller.CustomerListServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>CustomerListServlet</servlet-name>
+        <url-pattern>/Cashier/customers</url-pattern>
+    </servlet-mapping>
+
+    <!-- Edit Customer (GET form) -->
+    <servlet>
+        <servlet-name>CustomerEditServlet</servlet-name>
+        <servlet-class>com.example.Business.customer.controller.CustomerEditServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CustomerEditServlet</servlet-name>
+        <url-pattern>/Cashier/edit-customer</url-pattern>
+    </servlet-mapping>
+
+    <!-- Update Customer (POST) -->
+    <servlet>
+        <servlet-name>CustomerUpdateServlet</servlet-name>
+        <servlet-class>com.example.Business.customer.controller.CustomerUpdateServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CustomerUpdateServlet</servlet-name>
+        <url-pattern>/Cashier/update-customer</url-pattern>
+    </servlet-mapping>
+
+    <!-- Delete Customer (GET) -->
+    <servlet>
+        <servlet-name>CustomerDeleteServlet</servlet-name>
+        <servlet-class>com.example.Business.customer.controller.CustomerDeleteServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CustomerDeleteServlet</servlet-name>
+        <url-pattern>/Cashier/delete-customer</url-pattern>
+    </servlet-mapping>
+
 
 </web-app>

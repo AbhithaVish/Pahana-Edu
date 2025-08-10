@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="com.example.persistence.dao.CustomerDAO" %>
-<%@ page import="com.example.persistence.dao.ProductDAO" %>
+<%@ page import="com.example.persistence.dao.AddProductDAO" %>
 <%@ page import="com.example.persistence.dao.SaleItemDAO" %>
 <%@ page import="java.text.NumberFormat" %>
 <%@ page import="java.util.Locale" %>
@@ -32,10 +32,10 @@
 
         <%
             int totalCustomers = CustomerDAO.getTotalCustomers();
-            int totalProducts = ProductDAO.getTotalProducts();
+            int totalProducts = AddProductDAO.getTotalProducts();
             double totalSales = SaleItemDAO.getTotalSalesAmount();
 
-            String formattedSales = NumberFormat.getCurrencyInstance(Locale.US).format(totalSales);
+            String formattedSales = "LKR " + String.format("%,.2f", totalSales);
         %>
 
         <!-- Summary Cards -->

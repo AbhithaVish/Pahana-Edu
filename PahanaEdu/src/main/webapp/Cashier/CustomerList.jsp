@@ -45,6 +45,8 @@
         <th class="px-4 py-3 border border-gray-700">Name</th>
         <th class="px-4 py-3 border border-gray-700">Email</th>
         <th class="px-4 py-3 border border-gray-700">Phone</th>
+        <th class="px-4 py-3 border border-gray-700">Edit</th>
+        <th class="px-4 py-3 border border-gray-700">Delete</th>
       </tr>
       </thead>
       <tbody>
@@ -54,6 +56,12 @@
         <td class="px-4 py-2 border border-gray-700"><%= customer.getName() %></td>
         <td class="px-4 py-2 border border-gray-700"><%= customer.getEmail() %></td>
         <td class="px-4 py-2 border border-gray-700"><%= customer.getPhone() %></td>
+        <td class="px-4 py-2 border border-gray-700">
+          <a href="edit-customer?nic=<%= customer.getNic() %>" class="text-yellow-400 hover:underline">Edit</a> |
+          <a href="delete-customer?nic=<%= customer.getNic() %>" class="text-red-500 hover:underline"
+             onclick="return confirm('Are you sure you want to delete this customer?')">Delete</a>
+        </td>
+
       </tr>
       <% } %>
       </tbody>

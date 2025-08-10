@@ -1,7 +1,7 @@
-package com.example.Business.billing.controller;
+package com.example.Business.billing;
 
 import com.example.persistence.model.CartItem;
-import com.example.persistence.model.Products;
+import com.example.persistence.model.CashierProducts;
 import com.example.persistence.dao.ProductsDAO;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
@@ -33,7 +33,7 @@ public class AddToCartServlet extends HttpServlet {
         }
 
         ProductsDAO dao = new ProductsDAO();
-        Products product;
+        CashierProducts product;
         try {
             product = dao.getProductById(productId);
         } catch (SQLException e) {

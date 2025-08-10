@@ -49,7 +49,7 @@
             <a href="${pageContext.request.contextPath}/SalesReport" class="block hover:text-green-800">
                 <i class='bx bx-cog mr-2'></i> Sales
             </a>
-            <a href="login.jsp" class="block text-red-500 mt-10 hover:text-red-700">
+            <a href="#" class="block text-red-500 mt-10 hover:text-red-700">
                 <i class='bx bx-log-out mr-2'></i> Logout
             </a>
         </nav>

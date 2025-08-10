@@ -11,7 +11,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProductDAO {
+public class AddProductDAO {
 
     // Updated SQL to include category and quantity
     private static final String INSERT_PRODUCT_SQL =
@@ -27,8 +27,8 @@ public class ProductDAO {
             stmt.setString(1, product.getName());
             stmt.setString(2, product.getDescription());
             stmt.setDouble(3, product.getPrice());
-            stmt.setString(4, product.getCategory());   // new
-            stmt.setInt(5, product.getQuantity());      // new
+            stmt.setString(4, product.getCategory());
+            stmt.setInt(5, product.getQuantity());
 
             int rows = stmt.executeUpdate();
             return rows > 0;

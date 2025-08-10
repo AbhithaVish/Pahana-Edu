@@ -1,8 +1,8 @@
-package com.example.Business.billing.controller;
+package com.example.Business.billing;
 
 import com.example.persistence.dao.ProductsDAO;
 import com.example.persistence.model.CartItem;
-import com.example.persistence.model.Products;
+import com.example.persistence.model.CashierProducts;
 import com.example.util.DBConn;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -45,7 +45,7 @@ public class CheckoutServlet extends HttpServlet {
 
             // Validate and update stock
             for (CartItem item : cart) {
-                Products product = productsDAO.getProductById(item.getProduct().getId());
+                CashierProducts product = productsDAO.getProductById(item.getProduct().getId());
                 if (product == null || product.getQuantity() < item.getQuantity()) {
                     resp.sendRedirect("billing.jsp?error=invalid");
                     return;
