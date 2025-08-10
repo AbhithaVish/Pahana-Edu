@@ -1,21 +1,8 @@
-<<<<<<< HEAD
-
-<%--
-  Created by IntelliJ IDEA.
-  User: abhit
-  Date: 8/4/2025
-  Time: 6:59 AM
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page import="com.example.CartItem" %>
-=======
 <%@ page import="com.example.persistence.model.CartItem" %>
->>>>>>> main
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="java.util.*" %>
 <%@ page import="jakarta.servlet.http.HttpSession" %>
 <%
-    // Get the logged-in username from session
     HttpSession userSession = request.getSession(false);
     String username = null;
     if (userSession != null) {
@@ -30,53 +17,26 @@
 <head>
     <meta charset="UTF-8">
     <title>POS Billing</title>
-<<<<<<< HEAD
-    <style>
-        body { font-family: Arial; padding: 20px; background: #f0f0f0; }
-        input, button { padding: 8px; margin: 4px; }
-        table { width: 100%; border-collapse: collapse; background: white; margin-top: 20px; }
-        th, td { padding: 10px; border: 1px solid #ccc; }
-
-        .message {
-            padding: 10px;
-            margin-bottom: 10px;
-            border-radius: 4px;
-            font-weight: bold;
-            text-align: center;
-        }
-        .success { background-color: #d4edda; color: #155724; }
-        .error { background-color: #f8d7da; color: #721c24; }
-        .warning { background-color: #fff3cd; color: #856404; }
-        .info { background-color: #d1ecf1; color: #0c5460; }
-
-    </style>
-=======
     <script src="https://cdn.tailwindcss.com"></script>
->>>>>>> main
     <script>
         function addItem() {
             const id = document.getElementById("productId").value;
             const qty = document.getElementById("quantity").value;
-
             if (!id || !qty) {
                 alert("Enter Product ID and Quantity");
                 return;
             }
-
             const form = document.createElement("form");
             form.method = "post";
             form.action = "add-to-cart";
-
             const idInput = document.createElement("input");
             idInput.type = "hidden";
             idInput.name = "id";
             idInput.value = id;
-
             const qtyInput = document.createElement("input");
             qtyInput.type = "hidden";
             qtyInput.name = "quantity";
             qtyInput.value = qty;
-
             form.appendChild(idInput);
             form.appendChild(qtyInput);
             document.body.appendChild(form);
@@ -88,7 +48,6 @@
 
 <div class="max-w-5xl mx-auto">
 
-    <!-- Header -->
     <div class="flex justify-between items-center mb-6">
         <h1 class="text-3xl font-bold text-white">🧾 POS Billing System</h1>
         <div class="text-sm text-gray-300">
@@ -97,14 +56,12 @@
         </div>
     </div>
 
-    <!-- Action Buttons -->
     <div class="flex gap-4 mb-6">
         <a href="customers" class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded text-white font-medium shadow">
             👥 Manage Customers
         </a>
     </div>
 
-    <!-- Checkout -->
     <form method="post" action="checkout" class="bg-gray-800 mt-6 p-6 rounded space-y-4">
         <div class="grid grid-cols-2 gap-4">
             <input name="customerName" placeholder="Customer Name"
@@ -118,20 +75,9 @@
         </button>
     </form>
 
-    <!-- Message Alerts -->
     <%
-<<<<<<< HEAD
-        List<CartItem> cart = (List<CartItem>) session.getAttribute("cart");
-        double total = 0;
-        if (cart != null && !cart.isEmpty()) {
-
-            for (CartItem item : cart) {
-                double rowTotal = item.getTotal();
-                total += rowTotal;
-=======
         String status = request.getParameter("status");
         String error = request.getParameter("error");
->>>>>>> main
     %>
     <% if ("added".equals(status)) { %>
     <div class="bg-green-500 text-white p-3 rounded mb-4">✅ Product added to bill!</div>
@@ -147,7 +93,6 @@
     <div class="bg-red-600 text-white p-3 rounded mb-4">❌ Error saving the bill. Please try again.</div>
     <% } %>
 
-    <!-- Add Product Form -->
     <div class="bg-gray-800 p-4 rounded mb-6 flex gap-4 items-center">
         <input type="number" id="productId" placeholder="Product ID"
                class="px-4 py-2 rounded bg-gray-700 border border-gray-600 focus:outline-none focus:ring w-1/3">
@@ -158,7 +103,6 @@
         </button>
     </div>
 
-    <!-- Clear Cart Button -->
     <div class="flex justify-end mb-2 gap-2">
         <a href="clear-cart"
            class="bg-red-600 hover:bg-red-700 text-white font-semibold px-4 py-2 rounded">
@@ -166,7 +110,6 @@
         </a>
     </div>
 
-    <!-- Bill Table -->
     <div class="overflow-x-auto bg-gray-800 rounded">
         <table class="w-full table-auto text-left text-white">
             <thead class="bg-gray-700 text-sm uppercase">
