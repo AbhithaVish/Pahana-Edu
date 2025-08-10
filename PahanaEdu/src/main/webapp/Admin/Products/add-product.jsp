@@ -13,8 +13,8 @@
 <head>
   <meta charset="UTF-8">
   <title>Add Product</title>
-<%--  <script src="https://cdn.tailwindcss.com"></script>--%>
-<%--  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">--%>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
 </head>
 <body class="bg-gray-50 font-sans">
 
@@ -27,7 +27,7 @@
 
 <div class="flex min-h-screen">
 
-<%--  <jsp:include page="../NavigationBar/NavBar.jsp" />--%>
+  <jsp:include page="../NavigationBar/NavBar.jsp" />
 
   <!-- Main content -->
   <main class="flex-1 ml-0 md:ml-64 p-6">
@@ -37,10 +37,19 @@
       <form action="${pageContext.request.contextPath}/addProduct" method="post" class="space-y-4">
         <input type="text" name="name" placeholder="Product Name" required
                class="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500" />
+
         <input type="text" name="description" placeholder="Description" required
                class="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500" />
-        <input type="number" name="price" placeholder="Price" step="0.01" required
+
+        <input type="text" name="category" placeholder="Category" required
                class="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500" />
+
+        <input type="number" name="quantity" placeholder="Quantity" min="0" required
+               class="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500" />
+
+        <input type="number" name="price" placeholder="Price" step="0.01" min="0" required
+               class="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500" />
+
         <button type="submit" class="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition">
           Add Product
         </button>

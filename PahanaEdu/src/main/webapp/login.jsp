@@ -44,9 +44,9 @@
             </div>
         </form>
 
-        <div class="sign-up">
-            <h6>Don't have an account? <a href="signup.jsp">Sign up here</a>.</h6>
-        </div>
+<%--        <div class="sign-up">--%>
+<%--            <h6>Don't have an account? <a href="Admin/Cashiers/signup.jsp">Sign up here</a>.</h6>--%>
+<%--        </div>--%>
 
         <%
             String status = (String) request.getAttribute("status");

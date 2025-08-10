@@ -3,11 +3,15 @@ package com.example.Business.items.dto;
 public class ProductDTO {
     private String name;
     private String description;
+    private String category; // NEW
+    private int quantity;    // NEW
     private double price;
 
-    public ProductDTO(String name, String description, double price) {
+    public ProductDTO(String name, String description, String category, int quantity, double price) {
         this.name = name;
         this.description = description;
+        this.category = category;
+        this.quantity = quantity;
         this.price = price;
     }
 
@@ -17,6 +21,14 @@ public class ProductDTO {
 
     public String getDescription() {
         return description;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public int getQuantity() {
+        return quantity;
     }
 
     public double getPrice() {
