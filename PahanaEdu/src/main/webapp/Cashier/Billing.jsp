@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-
 <%--
   Created by IntelliJ IDEA.
   User: abhit
@@ -7,10 +5,7 @@
   Time: 6:59 AM
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page import="com.example.CartItem" %>
-=======
 <%@ page import="com.example.persistence.model.CartItem" %>
->>>>>>> main
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="java.util.*" %>
 <%@ page import="jakarta.servlet.http.HttpSession" %>
@@ -29,62 +24,7 @@
 <head>
     <meta charset="UTF-8">
     <title>POS Billing</title>
-<<<<<<< HEAD
-    <style>
-        body { font-family: Arial; padding: 20px; background: #f0f0f0; }
-        input, button { padding: 8px; margin: 4px; }
-        table { width: 100%; border-collapse: collapse; background: white; margin-top: 20px; }
-        th, td { padding: 10px; border: 1px solid #ccc; }
-
-        .message {
-            padding: 10px;
-            margin-bottom: 10px;
-            border-radius: 4px;
-            font-weight: bold;
-            text-align: center;
-        }
-        .success { background-color: #d4edda; color: #155724; }
-        .error { background-color: #f8d7da; color: #721c24; }
-        .warning { background-color: #fff3cd; color: #856404; }
-        .info { background-color: #d1ecf1; color: #0c5460; }
-
-    </style>
-=======
     <script src="https://cdn.tailwindcss.com"></script>
-<<<<<<< HEAD
-=======
->>>>>>> main
-    <script>
-        function addItem() {
-            const id = document.getElementById("productId").value;
-            const qty = document.getElementById("quantity").value;
-
-            if (!id || !qty) {
-                alert("Enter Product ID and Quantity");
-                return;
-            }
-
-            const form = document.createElement("form");
-            form.method = "post";
-            form.action = "add-to-cart";
-
-            const idInput = document.createElement("input");
-            idInput.type = "hidden";
-            idInput.name = "id";
-            idInput.value = id;
-
-            const qtyInput = document.createElement("input");
-            qtyInput.type = "hidden";
-            qtyInput.name = "quantity";
-            qtyInput.value = qty;
-
-            form.appendChild(idInput);
-            form.appendChild(qtyInput);
-            document.body.appendChild(form);
-            form.submit();
-        }
-    </script>
->>>>>>> b53c129acfdb7dc47fd41a09c635bee3ab62a76d
 </head>
 <body class="bg-gray-900 text-white min-h-screen p-6 font-sans">
 
@@ -122,7 +62,7 @@
         </button>
     </form>
 
-    <!-- Payment Modal: Enter Amount Given -->
+    <!-- Payment Modal -->
     <div id="paymentModal" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center z-50">
         <div class="bg-white rounded-lg p-6 w-96 text-black shadow-lg">
             <h2 class="text-2xl font-bold mb-4 text-center flex items-center justify-center">
@@ -141,7 +81,7 @@
         </div>
     </div>
 
-    <!-- Balance Modal: Show Calculated Balance -->
+    <!-- Balance Modal -->
     <div id="balanceModal" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center z-50">
         <div class="bg-white rounded-lg p-6 w-80 text-black shadow-lg text-center">
             <h2 class="text-2xl font-bold mb-4 flex items-center justify-center">
@@ -157,18 +97,8 @@
 
     <!-- Message Alerts -->
     <%
-<<<<<<< HEAD
-        List<CartItem> cart = (List<CartItem>) session.getAttribute("cart");
-        double total = 0;
-        if (cart != null && !cart.isEmpty()) {
-
-            for (CartItem item : cart) {
-                double rowTotal = item.getTotal();
-                total += rowTotal;
-=======
         String status = request.getParameter("status");
         String error = request.getParameter("error");
->>>>>>> main
     %>
     <% if ("added".equals(status)) { %>
     <div class="bg-green-500 text-white p-3 rounded mb-4">✅ Product added to bill!</div>
@@ -289,7 +219,6 @@
     function openPaymentModal(event) {
         event.preventDefault();
 
-        // Extract numeric total from "Rs. 123.45"
         const totalText = document.getElementById("totalAmount").textContent || "";
         const parts = totalText.split(" ");
         let parsedTotal = 0;
@@ -303,16 +232,12 @@
         }
 
         totalAmount = parsedTotal;
-
-        // Show first modal and reset fields
         document.getElementById("modalTotal").textContent = totalAmount.toFixed(2);
         document.getElementById("amountGiven").value = "";
         document.getElementById("paymentModal").classList.remove("hidden");
-
-        // Hide balance modal if visible
         document.getElementById("balanceModal").classList.add("hidden");
 
-        return false; // prevent form submission
+        return false;
     }
 
     function closePaymentModal() {
@@ -329,23 +254,18 @@
 
         givenAmount = given;
         const balance = given - totalAmount;
-
-        // Hide payment modal and show balance modal
         closePaymentModal();
         document.getElementById("balanceAmountModal").textContent = balance.toFixed(2);
         document.getElementById("balanceModal").classList.remove("hidden");
     }
 
     function backToPaymentModal() {
-        // Hide balance modal, show payment modal again
         document.getElementById("balanceModal").classList.add("hidden");
         document.getElementById("paymentModal").classList.remove("hidden");
     }
 
     function confirmPayment() {
-        // Add hidden input with amount given to form
         let form = document.getElementById("checkoutForm");
-
         let oldInput = document.getElementById("givenAmountInput");
         if (oldInput) form.removeChild(oldInput);
 
@@ -355,8 +275,6 @@
         input.id = "givenAmountInput";
         input.value = givenAmount;
         form.appendChild(input);
-
-        // Submit the form
         form.submit();
     }
 </script>
