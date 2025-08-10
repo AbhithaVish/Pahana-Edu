@@ -1,12 +1,10 @@
 package com.example;
 
-
 import com.example.util.DBConn;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
 
 import java.io.IOException;
-
 import java.sql.*;
 import java.util.List;
 
@@ -15,7 +13,6 @@ public class CheckoutServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         HttpSession session = request.getSession();
 
-main
         List<CartItem> cart = (List<CartItem>) session.getAttribute("cart");
 
         if (cart == null || cart.isEmpty()) {
@@ -34,7 +31,6 @@ main
         try (Connection conn = DBConn.getConnection()) {
             conn.setAutoCommit(false);
 
-            // Insert into sales
             String insertSale = "INSERT INTO sales (customer_name, customer_phone, total_amount, discount, service_charge) VALUES (?, ?, ?, ?, ?)";
             PreparedStatement ps = conn.prepareStatement(insertSale, Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, customer);
@@ -50,7 +46,6 @@ main
                 saleId = rs.getInt(1);
             }
 
-            // Insert line items
             String insertItem = "INSERT INTO sale_items (sale_id, product_id, quantity, price) VALUES (?, ?, ?, ?)";
             PreparedStatement itemPs = conn.prepareStatement(insertItem);
 
@@ -65,7 +60,6 @@ main
             itemPs.executeBatch();
             conn.commit();
 
-            // Save invoice for printing
             session.setAttribute("lastInvoice", cart);
             session.setAttribute("customerName", customer);
             session.setAttribute("customerPhone", phone);
