@@ -5,9 +5,13 @@
   Time: 9:40 AM
   To change this template use File | Settings | File Templates.
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
---%><%@ page contentType="text/html;charset=UTF-8" language="java" %>
+--%>
+
+
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="java.util.List" %>
-<%@ page import="com.example.persistence.model.Products" %>
+<%@ page import="com.example.persistence.model.CashierProducts" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,7 +24,6 @@
 </head>
 <body class="bg-gray-50 font-sans">
 
-<!-- Mobile Toggle Button -->
 <div class="md:hidden p-4">
   <button id="menu-toggle" class="text-2xl text-gray-700 focus:outline-none">
     <i class='bx bx-menu'></i>
@@ -41,7 +44,7 @@
       <a href="${pageContext.request.contextPath}/view-products" class="block hover:text-green-800">
         <i class='bx bx-file mr-2'></i> View Products
       </a>
-      <a href="#" class="block hover:text-green-800">
+      <a href="${pageContext.request.contextPath}/SalesReport" class="block hover:text-green-800">
         <i class='bx bx-cog mr-2'></i> Sales
       </a>
       <a href="login.jsp" class="block text-red-500 mt-10 hover:text-red-700">
@@ -60,12 +63,46 @@
       </a>
     </div>
 
+    <!-- Low Stock Panel -->
+    <%
+      List<CashierProducts> productList = (List<CashierProducts>) request.getAttribute("productList");
+      boolean hasLowStock = false;
+      if (productList != null) {
+        for (CashierProducts p : productList) {
+          if (p.getQuantity() < 10) {
+            hasLowStock = true;
+            break;
+          }
+        }
+      }
+    %>
+    <% if (hasLowStock) { %>
+    <div class="mb-8 p-4 bg-red-50 border border-red-200 rounded-lg shadow-sm">
+      <div class="flex items-center justify-between mb-3">
+        <h2 class="text-lg font-semibold text-red-800 flex items-center gap-2">
+          <i class='bx bxs-error-circle text-red-600'></i> Low Stock Products
+        </h2>
+      </div>
+      <div class="flex gap-4 overflow-x-auto pb-2">
+        <% for (CashierProducts p : productList) {
+          if (p.getQuantity() < 10) { %>
+        <div class="min-w-[200px] bg-white border border-red-200 p-4 rounded-xl shadow hover:shadow-md transition duration-200">
+          <div class="flex justify-between items-center mb-1">
+            <h3 class="font-bold text-sm text-gray-700"><%= p.getName() %></h3>
+            <span class="text-xs bg-red-100 text-red-800 px-2 py-0.5 rounded-full"><%= p.getCategory() %></span>
+          </div>
+          <p class="text-sm text-gray-600">Qty: <span class="font-semibold text-red-600"><%= p.getQuantity() %></span></p>
+        </div>
+        <% } } %>
+      </div>
+    </div>
+    <% } %>
+
     <!-- Product Grid -->
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
       <%
-        List<Products> productList = (List<Products>) request.getAttribute("productList");
         if (productList != null && !productList.isEmpty()) {
-          for (Products p : productList) {
+          for (CashierProducts p : productList) {
       %>
       <div class="bg-white rounded-xl shadow-md p-4 hover:shadow-lg transition duration-200">
         <div class="flex justify-between items-center mb-2">
@@ -73,7 +110,7 @@
           <span class="text-sm bg-green-100 text-green-700 px-2 py-1 rounded-full"><%= p.getCategory() %></span>
         </div>
         <p class="text-gray-500 text-sm mb-2"><%= p.getDescription() %></p>
-        <p class="text-gray-700 font-bold text-lg mb-2">$<%= String.format("%.2f", p.getPrice()) %></p>
+        <p class="text-gray-700 font-bold text-lg mb-2">Rs.<%= String.format("%.2f", p.getPrice()) %></p>
         <p class="text-sm text-gray-600 mb-4">Qty: <%= p.getQuantity() %></p>
 
         <div class="flex justify-between">

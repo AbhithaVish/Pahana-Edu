@@ -8,9 +8,10 @@ import jakarta.servlet.http.*;
 import java.io.IOException;
 import java.sql.*;
 
-@WebServlet("/register-customer")
-public class CustomerRegisterServlet extends HttpServlet {
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+@WebServlet("/create-customer")
+public class CustomerCreateServlet extends HttpServlet {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws IOException {
         String nic = request.getParameter("nic");
         String name = request.getParameter("name");
         String email = request.getParameter("email");
@@ -30,11 +31,12 @@ public class CustomerRegisterServlet extends HttpServlet {
             stmt.setString(3, email);
             stmt.setString(4, phone);
             stmt.executeUpdate();
-            response.sendRedirect("customer-register.jsp?msg=success");
+            response.sendRedirect("customers");
         } catch (SQLIntegrityConstraintViolationException e) {
             response.sendRedirect("customer-register.jsp?error=NIC or Email already exists");
         } catch (SQLException e) {
-            response.sendRedirect("customer-register.jsp?error=Database error: " + e.getMessage());
+            response.sendRedirect("customer-register.jsp?error=DB Error");
         }
     }
 }
+

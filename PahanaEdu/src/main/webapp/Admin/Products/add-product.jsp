@@ -63,7 +63,7 @@
       </form>
 
       <div class="mt-6 text-center">
-        <a href="${pageContext.request.contextPath}/Admin/AdminHome.jsp" class="text-blue-500 hover:underline">← Back to Dashboard</a>
+<%--        <a href="${pageContext.request.contextPath}/Admin/AdminHome.jsp" class="text-blue-500 hover:underline">← Back to Dashboard</a>--%>
       </div>
     </div>
   </main>

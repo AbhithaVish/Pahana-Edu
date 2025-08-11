@@ -1,6 +1,6 @@
 package com.example.Business.items.controller;
 
-import com.example.persistence.model.Products;
+import com.example.persistence.model.CashierProducts;
 import com.example.persistence.dao.ProductsDAO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -16,7 +16,7 @@ public class ProductEditServlet extends HttpServlet {
         try {
             int id = Integer.parseInt(req.getParameter("id"));
             ProductsDAO dao = new ProductsDAO();
-            Products product = dao.getProductById(id);
+            CashierProducts product = dao.getProductById(id);
             req.setAttribute("product", product);
             req.getRequestDispatcher("/Admin/Products/ProductForm.jsp").forward(req, resp);
         } catch (Exception e) {
@@ -27,7 +27,7 @@ public class ProductEditServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
-            Products p = new Products();
+            CashierProducts p = new CashierProducts();
             p.setId(Integer.parseInt(req.getParameter("id")));
             p.setName(req.getParameter("name"));
             p.setDescription(req.getParameter("description"));

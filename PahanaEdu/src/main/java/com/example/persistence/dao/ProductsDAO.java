@@ -1,20 +1,20 @@
 package com.example.persistence.dao;
 
-import com.example.persistence.model.Products;
+import com.example.persistence.model.CashierProducts;
 import com.example.util.DBConn;
 import java.sql.*;
 import java.util.*;
 
 public class ProductsDAO {
 
-    public List<Products> getAllProducts() throws SQLException {
-        List<Products> list = new ArrayList<>();
+    public List<CashierProducts> getAllProducts() throws SQLException {
+        List<CashierProducts> list = new ArrayList<>();
         try (Connection conn = DBConn.getConnection();
              PreparedStatement ps = conn.prepareStatement("SELECT * FROM products");
              ResultSet rs = ps.executeQuery()) {
 
             while (rs.next()) {
-                Products p = new Products();
+                CashierProducts p = new CashierProducts();
                 p.setId(rs.getInt("id"));
                 p.setName(rs.getString("name"));
                 p.setDescription(rs.getString("description"));
@@ -27,48 +27,48 @@ public class ProductsDAO {
         return list;
     }
 
-    public Products getProductById(int id) throws SQLException {
+    public CashierProducts getProductById(int id) throws SQLException {
         try (Connection conn = DBConn.getConnection();
              PreparedStatement ps = conn.prepareStatement("SELECT * FROM products WHERE id = ?")) {
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {
-                Products p = new Products();
+                CashierProducts p = new CashierProducts();
                 p.setId(rs.getInt("id"));
                 p.setName(rs.getString("name"));
                 p.setDescription(rs.getString("description"));
                 p.setPrice(rs.getDouble("price"));
-                p.setCategory(rs.getString("category")); // new
-                p.setQuantity(rs.getInt("quantity"));     // new
+                p.setCategory(rs.getString("category"));
+                p.setQuantity(rs.getInt("quantity"));
                 return p;
             }
         }
         return null;
     }
 
-    public void insertProduct(Products p) throws SQLException {
+    public void insertProduct(CashierProducts p) throws SQLException {
         try (Connection conn = DBConn.getConnection();
              PreparedStatement ps = conn.prepareStatement(
                      "INSERT INTO products (name, description, price, category, quantity) VALUES (?, ?, ?, ?, ?)")) {
             ps.setString(1, p.getName());
             ps.setString(2, p.getDescription());
             ps.setDouble(3, p.getPrice());
-            ps.setString(4, p.getCategory());  // new
-            ps.setInt(5, p.getQuantity());     // new
+            ps.setString(4, p.getCategory());
+            ps.setInt(5, p.getQuantity());
             ps.executeUpdate();
         }
     }
 
-    public void updateProduct(Products p) throws SQLException {
+    public void updateProduct(CashierProducts p) throws SQLException {
         try (Connection conn = DBConn.getConnection();
              PreparedStatement ps = conn.prepareStatement(
                      "UPDATE products SET name=?, description=?, price=?, category=?, quantity=? WHERE id=?")) {
             ps.setString(1, p.getName());
             ps.setString(2, p.getDescription());
             ps.setDouble(3, p.getPrice());
-            ps.setString(4, p.getCategory());   // new
-            ps.setInt(5, p.getQuantity());      // new
+            ps.setString(4, p.getCategory());
+            ps.setInt(5, p.getQuantity());
             ps.setInt(6, p.getId());
             ps.executeUpdate();
         }

@@ -1,4 +1,4 @@
-package com.example.Business.billing.controller;
+package com.example.Business.billing;
 
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
