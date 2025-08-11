@@ -67,7 +67,6 @@ public class AddToCartServlet extends HttpServlet {
         }
 
         session.setAttribute("cart", cart);
-
         response.sendRedirect("billing.jsp?status=added");
     }
 }
