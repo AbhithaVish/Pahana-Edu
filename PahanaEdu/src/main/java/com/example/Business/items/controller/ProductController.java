@@ -2,6 +2,7 @@ package com.example.Business.items.controller;
 
 import com.example.Business.items.dto.ProductDTO;
 import com.example.Business.items.service.ProductService;
+import com.example.persistence.model.Product;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -25,18 +26,17 @@ public class ProductController extends HttpServlet {
 
         String name = req.getParameter("name");
         String description = req.getParameter("description");
-        String category = req.getParameter("category");  // new
-        String quantityStr = req.getParameter("quantity");  // new
+        String category = req.getParameter("category");  // new field
+        String quantityStr = req.getParameter("quantity"); // new field
         String priceStr = req.getParameter("price");
 
         RequestDispatcher dispatcher = req.getRequestDispatcher("/Admin/Products/add-product.jsp");
 
         try {
             double price = Double.parseDouble(priceStr);
-            int quantity = Integer.parseInt(quantityStr);  // parse quantity
+            int quantity = Integer.parseInt(quantityStr);
 
             ProductDTO dto = new ProductDTO(name, description, category, quantity, price);
-
             boolean success = productService.addProduct(dto);
             req.setAttribute("status", success ? "success" : "failed");
         } catch (NumberFormatException e) {

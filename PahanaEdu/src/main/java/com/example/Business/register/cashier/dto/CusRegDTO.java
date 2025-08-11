@@ -1,21 +1,16 @@
-package com.example.persistence.model;
+package com.example.Business.register.cashier.dto;
 
-public class User {
+public class CusRegDTO {
     private String name;
     private String email;
     private String username;
     private String password;
 
-    public User() {}
-
-    public User(String name, String email, String username, String password) {
+    public CusRegDTO(String name, String email, String username, String password) {
         this.name = name;
         this.email = email;
         this.username = username;
         this.password = password;
-    }
-
-    public User(String username, String userType) {
     }
 
     public String getName() {

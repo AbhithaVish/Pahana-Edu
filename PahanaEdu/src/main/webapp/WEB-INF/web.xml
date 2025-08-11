@@ -28,11 +28,7 @@
         <url-pattern>/Cashier/checkout</url-pattern>
     </servlet-mapping>
 
-<<<<<<< HEAD
-
-=======
     <!-- Register Customer -->
->>>>>>> main
     <servlet>
         <servlet-name>CustomerRegisterServlet</servlet-name>
         <servlet-class>com.example.Business.customer.controller.CustomerCreateServlet</servlet-class>
@@ -67,7 +63,6 @@
         <servlet-name>CustomerListServlet</servlet-name>
         <servlet-class>com.example.Business.customer.controller.CustomerListServlet</servlet-class>
     </servlet>
-
     <servlet-mapping>
         <servlet-name>CustomerListServlet</servlet-name>
         <url-pattern>/Cashier/customers</url-pattern>
@@ -102,6 +97,5 @@
         <servlet-name>CustomerDeleteServlet</servlet-name>
         <url-pattern>/Cashier/delete-customer</url-pattern>
     </servlet-mapping>
-
 
 </web-app>

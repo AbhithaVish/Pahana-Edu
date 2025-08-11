@@ -1,9 +1,17 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: abhit
+  Date: 7/18/2025
+  Time: 8:33 PM
+  To change this template use File | Settings | File Templates.
+--%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="com.example.persistence.dao.CustomerDAO" %>
 <%@ page import="com.example.persistence.dao.AddProductDAO" %>
 <%@ page import="com.example.persistence.dao.SaleItemDAO" %>
 <%@ page import="java.text.NumberFormat" %>
 <%@ page import="java.util.Locale" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,7 +20,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gray-100 font-sans">
+<body class="bg-gray-50 font-sans">
 <div class="flex min-h-screen">
 
     <jsp:include page="NavigationBar/NavBar.jsp" />
@@ -20,7 +28,7 @@
     <main class="flex-1 p-8 overflow-y-auto">
 
         <div class="flex justify-between items-center mb-8">
-            <h1 class="text-2xl font-bold">Admin Dashboard</h1>
+            <h1 class="text-2xl font-bold">Welcome Admin</h1>
             <div class="flex items-center gap-4">
                 <%
                     String loggedInUser = (String) session.getAttribute("username");
@@ -61,7 +69,6 @@
                     Add Product
                 </button>
             </a>
-
             <a href="${pageContext.request.contextPath}/view-products">
                 <button class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
                     Product View
@@ -69,7 +76,7 @@
             </a>
             <a href="${pageContext.request.contextPath}/SalesReport">
                 <button class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
-                    SalesReport
+                    Sales Report
                 </button>
             </a>
         </div>

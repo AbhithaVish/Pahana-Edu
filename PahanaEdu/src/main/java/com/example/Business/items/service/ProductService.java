@@ -1,9 +1,8 @@
 package com.example.Business.items.service;
 
-
 import com.example.Business.items.dto.ProductDTO;
 import com.example.Business.items.mapper.ProductMapper;
-import com.example.persistence.dao.AddProductDAO;
+import com.example.persistence.dao.ProductDAO;
 import com.example.persistence.model.Product;
 
 import java.sql.SQLException;
@@ -11,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ProductService {
-    private final AddProductDAO productDAO = new AddProductDAO();
+    private final ProductDAO productDAO = new ProductDAO();
 
     public boolean addProduct(ProductDTO product) {
         try {
@@ -35,5 +34,4 @@ public class ProductService {
             return new ArrayList<>();
         }
     }
-
 }
