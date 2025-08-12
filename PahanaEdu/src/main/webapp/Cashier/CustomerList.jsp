@@ -61,7 +61,7 @@
           <a href="delete-customer?nic=<%= customer.getNic() %>" class="text-red-500 hover:underline"
              onclick="return confirm('Are you sure you want to delete this customer?')">Delete</a>
         </td>
-        <td class="px-4 py-2 border border-gray-700"></td>
+
       </tr>
       <% } %>
       </tbody>

@@ -63,6 +63,7 @@
         <servlet-name>CustomerListServlet</servlet-name>
         <servlet-class>com.example.Business.customer.controller.CustomerListServlet</servlet-class>
     </servlet>
+
     <servlet-mapping>
         <servlet-name>CustomerListServlet</servlet-name>
         <url-pattern>/Cashier/customers</url-pattern>
@@ -97,5 +98,6 @@
         <servlet-name>CustomerDeleteServlet</servlet-name>
         <url-pattern>/Cashier/delete-customer</url-pattern>
     </servlet-mapping>
+
 
 </web-app>

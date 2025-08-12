@@ -6,21 +6,21 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page import="com.example.persistence.model.Product" %>
+<%@ page import="com.example.persistence.model.CashierProducts" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <%
-  Product product = (Product) request.getAttribute("product");
+  CashierProducts product = (CashierProducts) request.getAttribute("product");
   boolean isEdit = (product != null);
 %>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
   <title><%= isEdit ? "Edit Product" : "Add Product" %></title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
 </head>
 <body class="bg-gray-50 font-sans">
 
@@ -39,7 +39,7 @@
 
       <form method="post" action="<%= isEdit ? request.getContextPath() + "/edit-product" : request.getContextPath() + "/add-product" %>" class="space-y-4">
         <% if (isEdit) { %>
-          <input type="hidden" name="id" value="<%= product.getId() %>" />
+        <input type="hidden" name="id" value="<%= product.getId() %>" />
         <% } %>
 
         <input type="text" name="name" placeholder="Product Name" required
@@ -83,6 +83,5 @@
     </div>
   </main>
 </div>
-
 </body>
 </html>

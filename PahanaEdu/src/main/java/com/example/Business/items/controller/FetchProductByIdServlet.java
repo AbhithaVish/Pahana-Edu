@@ -2,7 +2,7 @@ package com.example.Business.items.controller;
 
 import com.example.persistence.model.CashierProducts;
 import com.example.persistence.dao.ProductsDAO;
-import com.google.gson.Gson;
+//import com.google.gson.Gson;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
 
@@ -22,13 +22,13 @@ public class FetchProductByIdServlet extends HttpServlet {
             e.printStackTrace();
         }
 
-        resp.setContentType("application/json");
-        if (product != null) {
-            resp.getWriter().write(new Gson().toJson(product));
-        } else {
-            resp.setStatus(HttpServletResponse.SC_NOT_FOUND);
-            resp.getWriter().write("{\"error\":\"Product not found\"}");
-        }
+//        resp.setContentType("application/json");
+//        if (product != null) {
+//            resp.getWriter().write(new Gson().toJson(product));
+//        } else {
+//            resp.setStatus(HttpServletResponse.SC_NOT_FOUND);
+//            resp.getWriter().write("{\"error\":\"Product not found\"}");
+//        }
     }
 }
 

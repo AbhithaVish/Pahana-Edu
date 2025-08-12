@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: abhit
-  Date: 8/4/2025
-  Time: 10:18 PM
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page pageEncoding="UTF-8" %>
 <!DOCTYPE html>
@@ -28,6 +21,8 @@
     </a>
   </div>
   <h2 class="text-2xl font-bold text-center mb-6">👤 Register Customer</h2>
+
+
 
   <%
     String msg = request.getParameter("msg");

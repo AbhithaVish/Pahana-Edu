@@ -1,63 +1,115 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: abhit
-  Date: 7/26/2025
-  Time: 9:40 AM
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="java.util.List" %>
 <%@ page import="com.example.persistence.model.CashierProducts" %>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Product Management - Pahana Edu</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Management - Pahana Edu POS</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
-  <link rel="icon" type="image/png" href="../../img/logo.jpg" />
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+  <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/img/logo.jpg">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(to bottom, #f3f4f6, #e5e7eb);
+      margin: 0;
+    }
+    .container {
+      display: flex;
+      min-height: 100vh;
+    }
+    .sidebar {
+      background: linear-gradient(to bottom, #ffffff, #f9fafb);
+      box-shadow: 2px 0 8px rgba(0, 0, 0, 0.05);
+      width: 16rem;
+      flex-shrink: 0;
+    }
+    .card {
+      background: #ffffff;
+      border: 1px solid #e5e7eb;
+      border-radius: 12px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    }
+    .btn-primary {
+      background: #10b981;
+      color: #ffffff;
+      padding: 8px 16px;
+      border-radius: 8px;
+      transition: background 0.2s ease;
+    }
+    .btn-primary:hover {
+      background: #059669;
+    }
+    .btn-danger {
+      background: #ef4444;
+      color: #ffffff;
+      padding: 8px 16px;
+      border-radius: 8px;
+      transition: background 0.2s ease;
+    }
+    .btn-danger:hover {
+      background: #dc2626;
+    }
+    .low-stock-card {
+      background: #fef2f2;
+      border: 1px solid #fee2e2;
+      border-radius: 12px;
+    }
+    .header {
+      background: #ffffff;
+      border-bottom: 1px solid #e5e7eb;
+      padding: 16px 24px;
+      margin-bottom: 24px;
+    }
+  </style>
 </head>
-<body class="bg-gray-50 font-sans">
-
-<div class="md:hidden p-4">
-  <button id="menu-toggle" class="text-2xl text-gray-700 focus:outline-none">
-    <i class='bx bx-menu'></i>
-  </button>
-</div>
-
-<div class="flex min-h-screen">
+<body>
+<div class="container">
   <!-- Sidebar -->
-  <aside id="sidebar" class="w-64 bg-white border-r p-6 hidden md:block fixed md:static md:translate-x-0 transition-transform duration-300 ease-in-out z-40 h-screen">
-    <div class="text-2xl font-bold text-green-600 mb-10">Pahana Edu Admin</div>
+  <aside id="sidebar" class="sidebar p-6 md:sticky md:top-0 min-h-screen hidden md:block fixed md:static -translate-x-full md:translate-x-0 transition-transform duration-300 ease-in-out z-40">
+    <div class="text-2xl font-bold text-green-600 mb-10 flex items-center gap-2">
+      <i class='bx bx-book-open text-green-600'></i> Pahana Edu POS
+    </div>
     <nav class="space-y-4 text-gray-700">
-      <a href="${pageContext.request.contextPath}/Admin/AdminHome.jsp" class="block font-semibold text-green-600 hover:text-green-800">
-        <i class='bx bx-home mr-2'></i> Dashboard
+      <a href="${pageContext.request.contextPath}/Admin/AdminHome.jsp" class="block font-semibold text-green-600 hover:text-green-800 flex items-center gap-2">
+        <i class='bx bx-home'></i> Dashboard
       </a>
-      <a href="${pageContext.request.contextPath}/Admin/Products/add-product.jsp" class="block hover:text-green-800">
-        <i class='bx bx-file mr-2'></i> Add Products
+      <a href="${pageContext.request.contextPath}/Admin/Products/add-product.jsp" class="block hover:text-green-800 flex items-center gap-2">
+        <i class='bx bx-plus-circle'></i> Add Products
       </a>
-      <a href="${pageContext.request.contextPath}/view-products" class="block hover:text-green-800">
-        <i class='bx bx-file mr-2'></i> View Products
+      <a href="${pageContext.request.contextPath}/view-products" class="block font-semibold bg-green-50 text-green-700 px-2 py-1 rounded hover:text-green-800 flex items-center gap-2">
+        <i class='bx bx-book'></i> View Products
       </a>
-      <a href="${pageContext.request.contextPath}/SalesReport" class="block hover:text-green-800">
-        <i class='bx bx-cog mr-2'></i> Sales
+      <a href="${pageContext.request.contextPath}/SalesReport" class="block hover:text-green-800 flex items-center gap-2">
+        <i class='bx bx-bar-chart-alt-2'></i> Sales
       </a>
-      <a href="login.jsp" class="block text-red-500 mt-10 hover:text-red-700">
-        <i class='bx bx-log-out mr-2'></i> Logout
+      <a href="${pageContext.request.contextPath}/login.jsp" class="block text-red-500 mt-10 hover:text-red-700 flex items-center gap-2">
+        <i class='bx bx-log-out'></i> Logout
       </a>
     </nav>
   </aside>
 
   <!-- Main Content -->
-  <main class="flex-1 ml-0 md:ml-4 p-6">
-    <div class="flex justify-between items-center mb-6">
-      <h1 class="text-3xl font-bold text-green-700">Product List</h1>
-      <a href="${pageContext.request.contextPath}/Admin/Products/add-product.jsp"
-         class="inline-flex items-center bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 shadow text-sm">
-        <i class='bx bx-plus mr-2'></i> Add New Product
+  <main class="flex-1 p-6">
+    <!-- Header -->
+    <div class="header flex justify-between items-center mb-6">
+      <h1 class="text-3xl font-bold text-green-700">Book Inventory</h1>
+      <a href="${pageContext.request.contextPath}/Admin/Products/add-product.jsp" class="btn-primary flex items-center gap-2">
+        <i class='bx bx-plus'></i> Add New Book
       </a>
+    </div>
+
+    <!-- Mobile Menu Toggle -->
+    <div class="md:hidden p-4">
+      <button id="menu-toggle" class="text-2xl text-gray-700 focus:outline-none">
+        <i class='bx bx-menu'></i>
+      </button>
     </div>
 
     <!-- Low Stock Panel -->
@@ -74,16 +126,14 @@
       }
     %>
     <% if (hasLowStock) { %>
-    <div class="mb-8 p-4 bg-red-50 border border-red-200 rounded-lg shadow-sm">
-      <div class="flex items-center justify-between mb-3">
-        <h2 class="text-lg font-semibold text-red-800 flex items-center gap-2">
-          <i class='bx bxs-error-circle text-red-600'></i> Low Stock Products
-        </h2>
-      </div>
-      <div class="flex gap-4 overflow-x-auto pb-2">
+    <div class="mb-8 p-6 low-stock-card shadow-sm">
+      <h2 class="text-lg font-semibold text-red-800 flex items-center gap-2 mb-4">
+        <i class='bx bxs-error-circle text-red-600'></i> Low Stock Books
+      </h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         <% for (CashierProducts p : productList) {
           if (p.getQuantity() < 10) { %>
-        <div class="min-w-[200px] bg-white border border-red-200 p-4 rounded-xl shadow hover:shadow-md transition duration-200">
+        <div class="low-stock-card p-4 card">
           <div class="flex justify-between items-center mb-1">
             <h3 class="font-bold text-sm text-gray-700"><%= p.getName() %></h3>
             <span class="text-xs bg-red-100 text-red-800 px-2 py-0.5 rounded-full"><%= p.getCategory() %></span>
@@ -101,29 +151,31 @@
         if (productList != null && !productList.isEmpty()) {
           for (CashierProducts p : productList) {
       %>
-      <div class="bg-white rounded-xl shadow-md p-4 hover:shadow-lg transition duration-200">
+      <div class="card p-6">
         <div class="flex justify-between items-center mb-2">
           <h2 class="text-lg font-semibold text-gray-800"><%= p.getName() %></h2>
           <span class="text-sm bg-green-100 text-green-700 px-2 py-1 rounded-full"><%= p.getCategory() %></span>
         </div>
-        <p class="text-gray-500 text-sm mb-2"><%= p.getDescription() %></p>
+        <p class="text-gray-500 text-sm mb-2 line-clamp-2"><%= p.getDescription() %></p>
         <p class="text-gray-700 font-bold text-lg mb-2">Rs.<%= String.format("%.2f", p.getPrice()) %></p>
         <p class="text-sm text-gray-600 mb-4">Qty: <%= p.getQuantity() %></p>
-
-        <div class="flex justify-between">
-          <a href="<%= request.getContextPath() %>/edit-product?id=<%= p.getId() %>"
-             class="bg-blue-600 text-white px-3 py-1.5 rounded hover:bg-blue-700 text-xs">Edit</a>
-          <a href="<%= request.getContextPath() %>/delete-product?id=<%= p.getId() %>"
-             onclick="return confirm('Are you sure you want to delete this product?');"
-             class="bg-red-600 text-white px-3 py-1.5 rounded hover:bg-red-700 text-xs">Delete</a>
+        <div class="flex justify-between gap-2">
+          <a href="${pageContext.request.contextPath}/edit-product?id=<%= p.getId() %>" class="btn-primary text-xs text-center flex-1">
+            Edit
+          </a>
+          <a href="${pageContext.request.contextPath}/delete-product?id=<%= p.getId() %>"
+             onclick="return confirm('Are you sure you want to delete this book?');"
+             class="btn-danger text-xs text-center flex-1">
+            Delete
+          </a>
         </div>
       </div>
       <%
         }
       } else {
       %>
-      <div class="col-span-full text-center text-gray-500 text-lg">
-        No products available.
+      <div class="col-span-full text-center text-gray-500 text-lg py-10">
+        No books available in inventory.
       </div>
       <% } %>
     </div>
@@ -144,8 +196,9 @@
   const sidebar = document.getElementById('sidebar');
   toggle.addEventListener('click', () => {
     sidebar.classList.toggle('hidden');
+    sidebar.classList.toggle('translate-x-0');
+    sidebar.classList.toggle('-translate-x-full');
   });
 </script>
-
 </body>
 </html>
