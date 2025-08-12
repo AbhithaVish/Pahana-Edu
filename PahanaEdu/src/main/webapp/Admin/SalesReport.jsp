@@ -7,6 +7,8 @@
 --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="com.example.Business.reports.dto.SalesReportDTO" %>
+<%@ page import="java.util.List" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -102,17 +104,30 @@
         </tr>
         </thead>
         <tbody id="sales-tbody">
-        <c:forEach var="sale" items="${salesList}">
-          <tr class="hover:bg-gray-50">
-            <td class="px-4 py-2 border">${sale.id}</td>
-            <td class="px-4 py-2 border">${sale.customerName}</td>
-            <td class="px-4 py-2 border">${sale.customerPhone}</td>
-            <td class="px-4 py-2 border">${sale.totalAmount}</td>
-            <td class="px-4 py-2 border">${sale.discount}</td>
-            <td class="px-4 py-2 border">${sale.serviceCharge}</td>
-            <td class="px-4 py-2 border">${sale.createdAt}</td>
-          </tr>
-        </c:forEach>
+        <%
+          List<SalesReportDTO> salesList = (List<SalesReportDTO>) request.getAttribute("salesList");
+          if (salesList != null && !salesList.isEmpty()) {
+            for (SalesReportDTO sale : salesList) {
+        %>
+        <tr class="hover:bg-gray-50">
+          <td class="px-4 py-2 border"><%= sale.getId() %></td>
+          <td class="px-4 py-2 border"><%= sale.getCustomerName() %></td>
+          <td class="px-4 py-2 border"><%= sale.getCustomerPhone() %></td>
+          <td class="px-4 py-2 border"><%= sale.getTotalAmount() %></td>
+          <td class="px-4 py-2 border"><%= sale.getDiscount() %></td>
+          <td class="px-4 py-2 border"><%= sale.getServiceCharge() %></td>
+          <td class="px-4 py-2 border"><%= sale.getCreatedAt() %></td>
+        </tr>
+        <%
+            }
+          } else {
+        %>
+        <tr>
+          <td colspan="7" class="px-4 py-2 border text-center text-gray-500">No sales data found</td>
+        </tr>
+        <%
+          }
+        %>
         </tbody>
       </table>
     </div>
