@@ -12,14 +12,8 @@
     <meta charset="UTF-8">
     <title>PahanaEdu Admin Dashboard</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-
-    <!-- Boxicons for icons -->
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
-
-    <!-- Favicon -->
     <link rel="icon" type="image/png" href="../../img/logo.jpg">
 </head>
 <body class="bg-gray-50 font-sans">
@@ -34,9 +28,9 @@
 <div class="flex min-h-screen">
 
     <!-- Sidebar -->
-    <aside id="sidebar" class="w-64 bg-white border-r p-6 hidden md:block fixed md:static md:translate-x-0 transition-transform duration-300 ease-in-out z-40 h-screen">
+    <aside id="sidebar" class="w-64 bg-white border-r p-6 fixed top-0 bottom-0 left-0 hidden md:flex flex-col z-40 overflow-y-auto">
         <div class="text-2xl font-bold text-green-600 mb-10">Pahana Edu Admin</div>
-        <nav class="space-y-4 text-gray-700">
+        <nav class="space-y-4 text-gray-700 flex-grow overflow-y-auto">
             <a href="${pageContext.request.contextPath}/Admin/AdminHome.jsp" class="block font-semibold text-green-600 hover:text-green-800">
                 <i class='bx bx-home mr-2'></i> Dashboard
             </a>
@@ -49,10 +43,17 @@
             <a href="${pageContext.request.contextPath}/SalesReport" class="block hover:text-green-800">
                 <i class='bx bx-cog mr-2'></i> Sales
             </a>
-            <a href="#" class="block text-red-500 mt-10 hover:text-red-700">
+            <a href="${pageContext.request.contextPath}/Admin/help.jsp" class="block hover:text-green-800">
+                <i class='bx bx-file mr-2'></i> Help
+            </a>
+            <a href="${pageContext.request.contextPath}login.jsp" class="block text-red-500 mt-10 hover:text-red-700">
                 <i class='bx bx-log-out mr-2'></i> Logout
             </a>
         </nav>
+        <!-- Footer pinned to bottom -->
+        <footer class="text-center text-gray-500 text-sm py-6 border-t border-gray-800 mt-auto">
+            © 2025 Pahana Edu. All Rights Reserved.
+        </footer>
     </aside>
     </main>
 </div>

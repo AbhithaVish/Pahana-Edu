@@ -11,8 +11,8 @@ public class Sale {
 
     public Sale() {}
 
-    public Sale(int id, String customerName, String customerPhone, 
-               double totalAmount, double discount, double serviceCharge, String createdAt) {
+    public Sale(int id, String customerName, String customerPhone,
+                double totalAmount, double discount, double serviceCharge, String createdAt) {
         this.id = id;
         this.customerName = customerName;
         this.customerPhone = customerPhone;

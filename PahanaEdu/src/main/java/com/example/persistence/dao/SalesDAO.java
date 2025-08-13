@@ -9,8 +9,8 @@ import java.util.List;
 
 public class SalesDAO {
 
-    public List<Sale> getSalesWithFilters(String fromDate, String toDate, String customer, 
-                                         String minAmount, String maxAmount, String sortBy, String topN) throws SQLException {
+    public List<Sale> getSalesWithFilters(String fromDate, String toDate, String customer,
+                                          String minAmount, String maxAmount, String sortBy, String topN) throws SQLException {
         List<Sale> salesList = new ArrayList<>();
         StringBuilder sql = new StringBuilder(
                 "SELECT id, customer_name, customer_phone, total_amount, discount, service_charge, created_at " +
@@ -59,7 +59,7 @@ public class SalesDAO {
 
         try (Connection conn = DBConn.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql.toString())) {
-            
+
             // Set parameters
             for (int i = 0; i < params.size(); i++) {
                 stmt.setObject(i + 1, params.get(i));

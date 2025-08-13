@@ -71,32 +71,33 @@
 </head>
 <body>
 <div class="container">
-  <!-- Sidebar -->
-  <aside id="sidebar" class="sidebar p-6 md:sticky md:top-0 min-h-screen hidden md:block fixed md:static -translate-x-full md:translate-x-0 transition-transform duration-300 ease-in-out z-40">
-    <div class="text-2xl font-bold text-green-600 mb-10 flex items-center gap-2">
-      <i class='bx bx-book-open text-green-600'></i> Pahana Edu POS
-    </div>
-    <nav class="space-y-4 text-gray-700">
-      <a href="${pageContext.request.contextPath}/Admin/AdminHome.jsp" class="block font-semibold text-green-600 hover:text-green-800 flex items-center gap-2">
-        <i class='bx bx-home'></i> Dashboard
-      </a>
-      <a href="${pageContext.request.contextPath}/Admin/Products/add-product.jsp" class="block hover:text-green-800 flex items-center gap-2">
-        <i class='bx bx-plus-circle'></i> Add Products
-      </a>
-      <a href="${pageContext.request.contextPath}/view-products" class="block font-semibold bg-green-50 text-green-700 px-2 py-1 rounded hover:text-green-800 flex items-center gap-2">
-        <i class='bx bx-book'></i> View Products
-      </a>
-      <a href="${pageContext.request.contextPath}/SalesReport" class="block hover:text-green-800 flex items-center gap-2">
-        <i class='bx bx-bar-chart-alt-2'></i> Sales
-      </a>
-      <a href="${pageContext.request.contextPath}/login.jsp" class="block text-red-500 mt-10 hover:text-red-700 flex items-center gap-2">
-        <i class='bx bx-log-out'></i> Logout
-      </a>
-    </nav>
-  </aside>
+  <jsp:include page="../NavigationBar/NavBar.jsp" />
+<%--  <!-- Sidebar -->--%>
+<%--  <aside id="sidebar" class="sidebar p-6 md:sticky md:top-0 min-h-screen hidden md:block fixed md:static -translate-x-full md:translate-x-0 transition-transform duration-300 ease-in-out z-40">--%>
+<%--    <div class="text-2xl font-bold text-green-600 mb-10 flex items-center gap-2">--%>
+<%--      <i class='bx bx-book-open text-green-600'></i> Pahana Edu POS--%>
+<%--    </div>--%>
+<%--    <nav class="space-y-4 text-gray-700">--%>
+<%--      <a href="${pageContext.request.contextPath}/Admin/AdminHome.jsp" class="block font-semibold text-green-600 hover:text-green-800 flex items-center gap-2">--%>
+<%--        <i class='bx bx-home'></i> Dashboard--%>
+<%--      </a>--%>
+<%--      <a href="${pageContext.request.contextPath}/Admin/Products/add-product.jsp" class="block hover:text-green-800 flex items-center gap-2">--%>
+<%--        <i class='bx bx-plus-circle'></i> Add Products--%>
+<%--      </a>--%>
+<%--      <a href="${pageContext.request.contextPath}/view-products" class="block font-semibold bg-green-50 text-green-700 px-2 py-1 rounded hover:text-green-800 flex items-center gap-2">--%>
+<%--        <i class='bx bx-book'></i> View Products--%>
+<%--      </a>--%>
+<%--      <a href="${pageContext.request.contextPath}/SalesReport" class="block hover:text-green-800 flex items-center gap-2">--%>
+<%--        <i class='bx bx-bar-chart-alt-2'></i> Sales--%>
+<%--      </a>--%>
+<%--      <a href="${pageContext.request.contextPath}/login.jsp" class="block text-red-500 mt-10 hover:text-red-700 flex items-center gap-2">--%>
+<%--        <i class='bx bx-log-out'></i> Logout--%>
+<%--      </a>--%>
+<%--    </nav>--%>
+<%--  </aside>--%>
 
   <!-- Main Content -->
-  <main class="flex-1 p-6">
+  <main class="flex-1 ml-0 md:ml-64 p-6">
     <!-- Header -->
     <div class="header flex justify-between items-center mb-6">
       <h1 class="text-3xl font-bold text-green-700">Book Inventory</h1>

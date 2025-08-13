@@ -7,17 +7,13 @@
   <title>Customer Registration</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gray-900 text-white font-sans min-h-screen flex items-center justify-center px-4">
+<body class="bg-gray-950 text-white font-sans min-h-screen flex items-center justify-center px-4">
 
 <div class="bg-gray-800 rounded-lg shadow-lg p-8 w-full max-w-md">
   <div class="flex justify-between items-center mb-6">
     <a href="billing.jsp"
        class="bg-green-600 hover:bg-green-700 text-white font-semibold px-4 py-2 rounded shadow">
       📃 Cashier
-    </a>
-    <a href="CustomerList.jsp"
-       class="bg-green-600 hover:bg-green-700 text-white font-semibold px-4 py-2 rounded shadow">
-      👥 View Customer
     </a>
   </div>
   <h2 class="text-2xl font-bold text-center mb-6">👤 Register Customer</h2>
@@ -54,6 +50,5 @@
     </button>
   </form>
 </div>
-
 </body>
 </html>

@@ -23,7 +23,7 @@
   <title>Invoice - Pahana Edu</title>
   <style>
     body {
-      background-color: #1a202c;
+      background-color: #030712;
       color: white;
       font-family: Arial, sans-serif;
       padding: 20px;
@@ -139,8 +139,8 @@
   <!-- Header -->
   <div class="header">
     <h1>🧾 Pahana Edu - Invoice</h1>
-    <p>Customer: <span><%= customer != null ? customer : "Walk-in" %></span></p>
-    <p>Mobile: <span><%= mobile != null ? mobile : "-" %></span></p>
+    <h4>De Krester Rd. Colombo 4 - 071 059 2699</h4>
+    <p>Customer: <span><%= customer != null ? customer : "Walk-in" %></span></p> <p>Mobile: <span><%= mobile != null ? mobile : "-" %></span></p>
   </div>
 
   <!-- Invoice Table -->
@@ -182,6 +182,12 @@
     <p>Service Charge: <span>Rs. <%= String.format("%.2f", serviceCharge) %></span></p>
     <p class="font-bold">Total: Rs. <%= String.format("%.2f", totalAmount) %></p>
   </div>
+
+  <footer class="text-center text-gray-500 text-sm py-6 border-t border-gray-800">
+    <center>
+      © 2025 Pahana Edu. All Rights Reserved.
+    </center>
+  </footer>
 
   <!-- Buttons -->
   <div class="buttons no-print">

@@ -16,20 +16,20 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-@WebServlet("/SalesReport")
+//@WebServlet("/Admin/SalesReport")
 public class SalesReportController extends HttpServlet {
 
     private static final Logger LOGGER = Logger.getLogger(SalesReportController.class.getName());
     private final SalesReportService salesReportService = new SalesReportService();
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) 
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         try {
             // Create filter DTO from request parameters
             SalesFilterDTO filterDTO = createFilterFromRequest(request);
-            
+
             // Get sales data using service
             List<SalesReportDTO> salesList = salesReportService.getSalesReport(filterDTO);
 
@@ -43,7 +43,7 @@ public class SalesReportController extends HttpServlet {
         } catch (Exception e) {
             LOGGER.log(Level.SEVERE, "Error processing sales report request", e);
             request.setAttribute("error", "Failed to load sales report: " + e.getMessage());
-            RequestDispatcher dispatcher = request.getRequestDispatcher("Admin/SalesReport.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/Admin/SalesReport.jsp");
             dispatcher.forward(request, response);
         }
     }
@@ -60,7 +60,7 @@ public class SalesReportController extends HttpServlet {
         );
     }
 
-    private void handleAjaxRequest(HttpServletResponse response, List<SalesReportDTO> salesList) 
+    private void handleAjaxRequest(HttpServletResponse response, List<SalesReportDTO> salesList)
             throws IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
@@ -78,10 +78,10 @@ public class SalesReportController extends HttpServlet {
         }
     }
 
-    private void handleNormalRequest(HttpServletRequest request, HttpServletResponse response, 
-                                   List<SalesReportDTO> salesList) throws ServletException, IOException {
+    private void handleNormalRequest(HttpServletRequest request, HttpServletResponse response,
+                                     List<SalesReportDTO> salesList) throws ServletException, IOException {
         request.setAttribute("salesList", salesList);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("Admin/SalesReport.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/Admin/SalesReport.jsp");
         dispatcher.forward(request, response);
     }
 }

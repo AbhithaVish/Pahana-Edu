@@ -11,7 +11,7 @@ public class SalesFilterDTO {
 
     public SalesFilterDTO() {}
 
-    public SalesFilterDTO(String fromDate, String toDate, String customer, 
+    public SalesFilterDTO(String fromDate, String toDate, String customer,
                          String minAmount, String maxAmount, String sortBy, String topN) {
         this.fromDate = fromDate;
         this.toDate = toDate;

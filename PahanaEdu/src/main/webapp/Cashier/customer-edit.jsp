@@ -18,7 +18,7 @@
     }
   </style>
 </head>
-<body class="bg-gray-900 text-white min-h-screen p-6">
+<body class="bg-gray-950 text-white min-h-screen p-6">
 
 <!-- Edit Form Card -->
 <div class="w-full max-w-3xl mx-auto bg-gray-800 rounded-lg shadow p-8 pt-16 relative">

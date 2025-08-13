@@ -17,7 +17,7 @@
 
     <jsp:include page="NavigationBar/NavBar.jsp" />
 
-    <main class="flex-1 p-8 overflow-y-auto">
+    <main class="flex-1 ml-0 md:ml-64 p-6">
 
         <div class="flex justify-between items-center mb-8">
             <h1 class="text-2xl font-bold">Admin Dashboard</h1>

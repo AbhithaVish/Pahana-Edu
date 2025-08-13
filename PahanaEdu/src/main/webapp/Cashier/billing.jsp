@@ -19,7 +19,7 @@
     <title>POS Billing</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gray-900 text-white min-h-screen p-6 font-sans">
+<body class="bg-gray-950 text-white min-h-screen p-6 font-sans">
 
 <div class="max-w-5xl mx-auto">
 
@@ -28,7 +28,8 @@
         <h1 class="text-3xl font-bold text-white">🧾 POS Billing System</h1>
         <div class="text-sm text-gray-300">
             Welcome, <span class="font-semibold text-white"><%= username != null ? username : "Guest" %></span>
-            <a href="../../login.jsp" class="ml-4 text-red-400 hover:text-red-600">Logout</a>
+            <a href="help.jsp" class="ml-4 text-white-400 hover:text-white-600">🆘 Help</a>
+            <a href="${pageContext.request.contextPath}/login.jsp" class="ml-4 text-red-400 hover:text-red-600">Logout</a>
         </div>
     </div>
 
@@ -44,13 +45,14 @@
           class="bg-gray-800 mt-6 p-6 rounded space-y-4"
           onsubmit="return openPaymentModal(event)">
         <div class="grid grid-cols-2 gap-4">
-            <input name="customerName" placeholder="Customer Name"
-                   class="px-4 py-2 rounded bg-gray-700 border border-gray-600 focus:outline-none focus:ring" autocomplete="off">
-            <input name="customerPhone" placeholder="Mobile Number"
+            <div class="relative">
+                <input id="customerName" name="customerName" placeholder="Customer Name"
+                       class="px-4 py-2 rounded bg-gray-700 border border-gray-600 focus:outline-none focus:ring w-full" autocomplete="off" oninput="showSuggestions()">
+                <div id="nameSuggestions" class="absolute z-10 bg-gray-800 border border-gray-600 rounded-md mt-1 w-full max-h-48 overflow-y-auto hidden"></div>
+            </div>
+            <input id="customerPhone" name="customerPhone" placeholder="Mobile Number"
                    class="px-4 py-2 rounded bg-gray-700 border border-gray-600 focus:outline-none focus:ring" autocomplete="off">
         </div>
-
-
         <button type="submit"
                 class="w-full bg-indigo-600 hover:bg-indigo-700 px-4 py-2 rounded text-white font-semibold">
             ✅ Checkout & Print Bill
@@ -192,13 +194,80 @@
 
 </div>
 
+<footer class="text-center text-gray-500 text-sm py-6 border-t border-gray-800">
+    © 2025 Pahana Edu. All Rights Reserved.
+</footer>
+
 <script>
+    let customers = [];
+
+    // Fetch customers from backend for auto-complete
+    fetch('${pageContext.request.contextPath}/customers?format=json')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok: ' + response.status);
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log('Fetched customers:', data); // Log for debugging
+            customers = data;
+            if (!Array.isArray(customers) || customers.length === 0) {
+                console.warn('No customers found or invalid data format');
+            }
+        })
+        .catch(error => {
+            console.error('Error fetching customers:', error);
+            alert('Failed to load customer data. Please try again.');
+        });
+
+    // Show suggestions for customer name
+    function showSuggestions() {
+        const input = document.getElementById('customerName').value.trim().toLowerCase();
+        const suggestionsDiv = document.getElementById('nameSuggestions');
+        suggestionsDiv.innerHTML = '';
+        suggestionsDiv.classList.add('hidden');
+
+        if (input.length === 0) {
+            return;
+        }
+
+        const filtered = customers.filter(c =>
+            c.name && c.name.toLowerCase().includes(input)
+        );
+
+        if (filtered.length === 0) {
+            return;
+        }
+
+        filtered.forEach(c => {
+            const div = document.createElement('div');
+            div.classList.add('px-4', 'py-2', 'hover:bg-gray-700', 'cursor-pointer', 'text-white');
+            div.textContent = c.name + (c.phone ? ` (${c.phone})` : '');
+            div.onclick = () => {
+                document.getElementById('customerName').value = c.name || '';
+                document.getElementById('customerPhone').value = c.phone || '';
+                suggestionsDiv.classList.add('hidden');
+            };
+            suggestionsDiv.appendChild(div);
+        });
+        suggestionsDiv.classList.remove('hidden');
+    }
+
+    // Hide suggestions when clicking outside
+    document.addEventListener('click', (event) => {
+        const suggestionsDiv = document.getElementById('nameSuggestions');
+        const customerNameInput = document.getElementById('customerName');
+        if (!suggestionsDiv.contains(event.target) && event.target !== customerNameInput) {
+            suggestionsDiv.classList.add('hidden');
+        }
+    });
+
     function addItem() {
         const id = document.getElementById("productId").value.trim();
         const qty = document.getElementById("quantity").value.trim();
 
         if (!id || !qty || Number(qty) <= 0) {
-            // Instead of alert, reload page with error query param
             const url = new URL(window.location.href);
             url.searchParams.set('error', 'invalid');
             window.location.href = url.toString();
@@ -291,7 +360,6 @@
 
     function closeInvalidInputModal() {
         document.getElementById('invalidInputModal').classList.add('hidden');
-        // Remove error param from URL after closing modal
         const url = new URL(window.location.href);
         url.searchParams.delete('error');
         window.history.replaceState({}, document.title, url.toString());

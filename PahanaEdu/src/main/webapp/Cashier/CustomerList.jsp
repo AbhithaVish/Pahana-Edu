@@ -14,8 +14,35 @@
   <meta charset="UTF-8">
   <title>Customer List</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    #last-updated { font-style: italic; color: #aaa; }
+  </style>
+  <script>
+    function updateTable() {
+      const form = document.getElementById('search-form');
+      const formData = new FormData(form);
+      const params = new URLSearchParams(formData).toString();
+      fetch('${pageContext.request.contextPath}/customers?ajax=true&' + params)
+              .then(response => response.text())
+              .then(html => {
+                document.querySelector('#customer-tbody').innerHTML = html;
+                document.getElementById('last-updated').textContent =
+                        'Last updated: ' + new Date().toLocaleString();
+              })
+              .catch(error => console.error('Error refreshing data:', error));
+    }
+    function applySearch() {
+      updateTable();
+    }
+    function clearSearch() {
+      document.getElementById('search-form').reset();
+      updateTable();
+    }
+    // Optional: Periodic refresh every 30 seconds
+    setInterval(updateTable, 30000);
+  </script>
 </head>
-<body class="bg-gray-900 text-white min-h-screen font-sans p-6">
+<body class="bg-gray-950 text-white min-h-screen font-sans p-6">
 
 <div class="max-w-5xl mx-auto bg-gray-800 rounded-lg shadow-lg p-6">
   <!-- Header -->
@@ -31,6 +58,29 @@
     </a>
   </div>
 
+  <!-- Search Form -->
+  <form id="search-form" class="mb-6 bg-gray-900 p-4 rounded shadow">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div>
+        <label class="block text-sm font-medium text-gray-300">Search</label>
+        <input type="text" name="search" class="mt-1 block w-full border-gray-600 rounded-md shadow-sm bg-gray-800 text-white p-2" placeholder="Search by name, email, or phone">
+      </div>
+      <div>
+<%--        <label class="block text-sm font-medium text-gray-300">Sort By</label>--%>
+<%--        <select name="sortBy" class="mt-1 block w-full border-gray-600 rounded-md shadow-sm bg-gray-800 text-white p-2">--%>
+<%--          <option value="nic">NIC</option>--%>
+<%--          <option value="name">Name</option>--%>
+<%--        </select>--%>
+      </div>
+    </div>
+    <div class="mt-4 flex space-x-4">
+      <button type="button" onclick="applySearch()" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded">Search</button>
+      <button type="button" onclick="clearSearch()" class="bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded">Clear</button>
+    </div>
+  </form>
+
+  <div id="last-updated" class="text-right mb-4">Last updated: <%= new java.util.Date().toString() %></div>
+
   <%
     List<Customer> customers = (List<Customer>) request.getAttribute("customerList");
     if (customers != null && !customers.isEmpty()) {
@@ -45,11 +95,10 @@
         <th class="px-4 py-3 border border-gray-700">Name</th>
         <th class="px-4 py-3 border border-gray-700">Email</th>
         <th class="px-4 py-3 border border-gray-700">Phone</th>
-        <th class="px-4 py-3 border border-gray-700">Edit</th>
-        <th class="px-4 py-3 border border-gray-700">Delete</th>
+        <th class="px-4 py-3 border border-gray-700">Actions</th>
       </tr>
       </thead>
-      <tbody>
+      <tbody id="customer-tbody">
       <% for (Customer customer : customers) { %>
       <tr class="border-t border-gray-700 hover:bg-gray-700/50">
         <td class="px-4 py-2 border border-gray-700"><%= customer.getNic() %></td>
@@ -61,7 +110,6 @@
           <a href="delete-customer?nic=<%= customer.getNic() %>" class="text-red-500 hover:underline"
              onclick="return confirm('Are you sure you want to delete this customer?')">Delete</a>
         </td>
-
       </tr>
       <% } %>
       </tbody>
@@ -75,6 +123,10 @@
   </div>
   <% } %>
 </div>
+
+<footer class="text-center text-gray-500 text-sm py-6 border-t border-gray-800">
+  © 2025 Pahana Edu. All Rights Reserved.
+</footer>
 
 </body>
 </html>
