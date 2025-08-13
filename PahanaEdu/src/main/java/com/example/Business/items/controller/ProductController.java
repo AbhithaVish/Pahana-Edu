@@ -25,15 +25,15 @@ public class ProductController extends HttpServlet {
 
         String name = req.getParameter("name");
         String description = req.getParameter("description");
-        String category = req.getParameter("category");  // new
-        String quantityStr = req.getParameter("quantity");  // new
+        String category = req.getParameter("category");
+        String quantityStr = req.getParameter("quantity");
         String priceStr = req.getParameter("price");
 
         RequestDispatcher dispatcher = req.getRequestDispatcher("/Admin/Products/add-product.jsp");
 
         try {
             double price = Double.parseDouble(priceStr);
-            int quantity = Integer.parseInt(quantityStr);  // parse quantity
+            int quantity = Integer.parseInt(quantityStr);
 
             ProductDTO dto = new ProductDTO(name, description, category, quantity, price);
 

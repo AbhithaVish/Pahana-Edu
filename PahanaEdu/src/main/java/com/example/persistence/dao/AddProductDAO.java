@@ -47,8 +47,8 @@ public class AddProductDAO {
                         rs.getInt("id"),
                         rs.getString("name"),
                         rs.getString("description"),
-                        rs.getString("category"),  // new
-                        rs.getInt("quantity"),      // new
+                        rs.getString("category"),
+                        rs.getInt("quantity"),
                         rs.getDouble("price")
                 );
                 products.add(product);

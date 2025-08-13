@@ -3,8 +3,8 @@ package com.example.Business.items.dto;
 public class ProductDTO {
     private String name;
     private String description;
-    private String category; // NEW
-    private int quantity;    // NEW
+    private String category;
+    private int quantity;
     private double price;
 
     public ProductDTO(String name, String description, String category, int quantity, double price) {

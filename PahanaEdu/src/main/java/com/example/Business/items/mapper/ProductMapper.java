@@ -9,8 +9,8 @@ public class ProductMapper {
         Product product = new Product();
         product.setName(dto.getName());
         product.setDescription(dto.getDescription());
-        product.setCategory(dto.getCategory());     // NEW
-        product.setQuantity(dto.getQuantity());     // NEW
+        product.setCategory(dto.getCategory());
+        product.setQuantity(dto.getQuantity());
         product.setPrice(dto.getPrice());
         return product;
     }
@@ -19,8 +19,8 @@ public class ProductMapper {
         return new ProductDTO(
                 entity.getName(),
                 entity.getDescription(),
-                entity.getCategory(),   // NEW
-                entity.getQuantity(),   // NEW
+                entity.getCategory(),
+                entity.getQuantity(),
                 entity.getPrice()
         );
     }

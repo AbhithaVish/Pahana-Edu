@@ -19,8 +19,8 @@ public class ProductsDAO {
                 p.setName(rs.getString("name"));
                 p.setDescription(rs.getString("description"));
                 p.setPrice(rs.getDouble("price"));
-                p.setCategory(rs.getString("category")); // new
-                p.setQuantity(rs.getInt("quantity"));     // new
+                p.setCategory(rs.getString("category"));
+                p.setQuantity(rs.getInt("quantity"));
                 list.add(p);
             }
         }

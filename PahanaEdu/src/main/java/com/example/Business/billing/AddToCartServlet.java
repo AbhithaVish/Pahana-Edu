@@ -47,6 +47,12 @@ public class AddToCartServlet extends HttpServlet {
             return;
         }
 
+        // Check stock availability
+        if (quantity > product.getQuantity()) {
+            response.sendRedirect("billing.jsp?error=outofstock");
+            return;
+        }
+
         HttpSession session = request.getSession();
         List<CartItem> cart = (List<CartItem>) session.getAttribute("cart");
         if (cart == null) {
