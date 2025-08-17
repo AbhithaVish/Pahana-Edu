@@ -1,4 +1,4 @@
-package com.example.Business.customer.controller;
+package com.example.Business.customer;
 
 import com.example.persistence.model.Customer;
 import com.example.util.DBConn;

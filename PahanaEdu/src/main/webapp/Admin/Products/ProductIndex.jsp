@@ -72,29 +72,6 @@
 <body>
 <div class="container">
   <jsp:include page="../NavigationBar/NavBar.jsp" />
-<%--  <!-- Sidebar -->--%>
-<%--  <aside id="sidebar" class="sidebar p-6 md:sticky md:top-0 min-h-screen hidden md:block fixed md:static -translate-x-full md:translate-x-0 transition-transform duration-300 ease-in-out z-40">--%>
-<%--    <div class="text-2xl font-bold text-green-600 mb-10 flex items-center gap-2">--%>
-<%--      <i class='bx bx-book-open text-green-600'></i> Pahana Edu POS--%>
-<%--    </div>--%>
-<%--    <nav class="space-y-4 text-gray-700">--%>
-<%--      <a href="${pageContext.request.contextPath}/Admin/AdminHome.jsp" class="block font-semibold text-green-600 hover:text-green-800 flex items-center gap-2">--%>
-<%--        <i class='bx bx-home'></i> Dashboard--%>
-<%--      </a>--%>
-<%--      <a href="${pageContext.request.contextPath}/Admin/Products/add-product.jsp" class="block hover:text-green-800 flex items-center gap-2">--%>
-<%--        <i class='bx bx-plus-circle'></i> Add Products--%>
-<%--      </a>--%>
-<%--      <a href="${pageContext.request.contextPath}/view-products" class="block font-semibold bg-green-50 text-green-700 px-2 py-1 rounded hover:text-green-800 flex items-center gap-2">--%>
-<%--        <i class='bx bx-book'></i> View Products--%>
-<%--      </a>--%>
-<%--      <a href="${pageContext.request.contextPath}/SalesReport" class="block hover:text-green-800 flex items-center gap-2">--%>
-<%--        <i class='bx bx-bar-chart-alt-2'></i> Sales--%>
-<%--      </a>--%>
-<%--      <a href="${pageContext.request.contextPath}/login.jsp" class="block text-red-500 mt-10 hover:text-red-700 flex items-center gap-2">--%>
-<%--        <i class='bx bx-log-out'></i> Logout--%>
-<%--      </a>--%>
-<%--    </nav>--%>
-<%--  </aside>--%>
 
   <!-- Main Content -->
   <main class="flex-1 ml-0 md:ml-64 p-6">
@@ -139,8 +116,20 @@
             <h3 class="font-bold text-sm text-gray-700"><%= p.getName() %></h3>
             <span class="text-xs bg-red-100 text-red-800 px-2 py-0.5 rounded-full"><%= p.getCategory() %></span>
           </div>
-          <p class="text-sm text-gray-600">Qty: <span class="font-semibold text-red-600"><%= p.getQuantity() %></span></p>
+          <p class="text-xs text-gray-500">ID: <%= p.getId() %></p>
+          <p class="text-sm text-gray-600 mb-2">Qty:
+            <span class="font-semibold text-red-600"><%= p.getQuantity() %></span>
+          </p>
+
+          <!-- Edit Button -->
+          <div class="flex justify-end">
+            <a href="${pageContext.request.contextPath}/edit-product?id=<%= p.getId() %>"
+               class="btn-primary text-xs text-center px-3 py-1">
+              Edit
+            </a>
+          </div>
         </div>
+
         <% } } %>
       </div>
     </div>
@@ -157,6 +146,7 @@
           <h2 class="text-lg font-semibold text-gray-800"><%= p.getName() %></h2>
           <span class="text-sm bg-green-100 text-green-700 px-2 py-1 rounded-full"><%= p.getCategory() %></span>
         </div>
+        <p class="text-xs text-gray-500 mb-1">ID: <%= p.getId() %></p>
         <p class="text-gray-500 text-sm mb-2 line-clamp-2"><%= p.getDescription() %></p>
         <p class="text-gray-700 font-bold text-lg mb-2">Rs.<%= String.format("%.2f", p.getPrice()) %></p>
         <p class="text-sm text-gray-600 mb-4">Qty: <%= p.getQuantity() %></p>

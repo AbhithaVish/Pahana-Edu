@@ -12,7 +12,7 @@ public class LoginDAO {
     public boolean authenticateCashier(String username, String password) throws SQLException {
         String query = "SELECT * FROM login_tbl WHERE username = ? AND password = ?";
 
-        try (Connection conn = DBConn.getInstance().getConnection();
+        try (Connection conn = DBConn.getConnection();
              PreparedStatement stmt = conn.prepareStatement(query)) {
 
             stmt.setString(1, username);

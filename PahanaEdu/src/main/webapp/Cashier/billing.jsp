@@ -1,7 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page import="com.example.persistence.model.CartItem" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="java.util.*" %>
 <%@ page import="jakarta.servlet.http.HttpSession" %>
 <%
@@ -15,29 +13,33 @@
     }
 %>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Bookshop POS Billing System</title>
+    <title>POS Billing</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-950 text-white min-h-screen p-6 font-sans">
+
 <div class="max-w-5xl mx-auto">
+
     <!-- Header -->
     <div class="flex justify-between items-center mb-6">
         <h1 class="text-3xl font-bold text-white">🧾 POS Billing System</h1>
         <div class="text-sm text-gray-300">
             Welcome, <span class="font-semibold text-white"><%= username != null ? username : "Guest" %></span>
             <a href="help.jsp" class="ml-4 text-white-400 hover:text-white-600">🆘 Help</a>
-            <a href="${pageContext.request.contextPath}/login.jsp" class="ml-4 text-red-400 hover:text-red-600">Logout</a>
+            <a href="${pageContext.request.contextPath}/Cashier/logout" class="ml-4 text-red-400 hover:text-red-600">Logout</a>
         </div>
     </div>
+
     <!-- Action Buttons -->
     <div class="flex gap-4 mb-6">
         <a href="customers" class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded text-white font-medium shadow">
             👥 Manage Customers
         </a>
     </div>
+
     <!-- Checkout -->
     <form id="checkoutForm" method="post" action="checkout"
           class="bg-gray-800 mt-6 p-6 rounded space-y-4"
@@ -56,6 +58,7 @@
             ✅ Checkout & Print Bill
         </button>
     </form>
+
     <!-- Payment Modal -->
     <div id="paymentModal" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center z-50">
         <div class="bg-white rounded-lg p-6 w-96 text-black shadow-lg">
@@ -74,6 +77,7 @@
             </div>
         </div>
     </div>
+
     <!-- Balance Modal -->
     <div id="balanceModal" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center z-50">
         <div class="bg-white rounded-lg p-6 w-80 text-black shadow-lg text-center">
@@ -87,6 +91,7 @@
             </div>
         </div>
     </div>
+
     <!-- Invalid Input Modal -->
     <div id="invalidInputModal" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center z-50">
         <div class="bg-yellow-400 rounded-lg p-6 w-80 text-black shadow-lg text-center">
@@ -100,29 +105,26 @@
             </button>
         </div>
     </div>
+
     <!-- Message Alerts -->
     <%
         String status = request.getParameter("status");
         String error = request.getParameter("error");
     %>
-    <c:if test="${param.status == 'added'}">
-        <div class="bg-green-500 text-white p-3 rounded mb-4">✅ Product added to bill!</div>
-    </c:if>
-    <c:if test="${param.error == 'notfound'}">
-        <div class="bg-red-500 text-white p-3 rounded mb-4">❌ Product not found! Please check the ID.</div>
-    </c:if>
-    <c:if test="${param.status == 'billed'}">
-        <div class="bg-blue-400 text-black p-3 rounded mb-4">🧾 Bill generated successfully!</div>
-    </c:if>
-    <c:if test="${param.error == 'empty'}">
-        <div class="bg-red-600 text-white p-3 rounded mb-4">🛑 Cannot bill. The cart is empty.</div>
-    </c:if>
-    <c:if test="${param.error == 'saving'}">
-        <div class="bg-red-600 text-white p-3 rounded mb-4">❌ Error saving the bill. Please try again.</div>
-    </c:if>
-    <c:if test="${param.error == 'outofstock'}">
-        <div class="bg-red-600 text-white p-3 rounded mb-4">❌ Quantity exceeds stock availability!</div>
-    </c:if>
+    <% if ("added".equals(status)) { %>
+    <div class="bg-green-500 text-white p-3 rounded mb-4">✅ Product added to bill!</div>
+    <% } else if ("notfound".equals(error)) { %>
+    <div class="bg-red-500 text-white p-3 rounded mb-4">❌ Product not found! Please check the ID.</div>
+    <% } else if ("billed".equals(status)) { %>
+    <div class="bg-blue-400 text-black p-3 rounded mb-4">🧾 Bill generated successfully!</div>
+    <% } else if ("empty".equals(error)) { %>
+    <div class="bg-red-600 text-white p-3 rounded mb-4">🛑 Cannot bill. The cart is empty.</div>
+    <% } else if ("saving".equals(error)) { %>
+    <div class="bg-red-600 text-white p-3 rounded mb-4">❌ Error saving the bill. Please try again.</div>
+    <% } else if ("outofstock".equals(error)) { %>
+    <div class="bg-red-600 text-white p-3 rounded mb-4">❌ Quantity exceeds stock availability!</div>
+    <% } %>
+
     <!-- Add Product Form -->
     <div class="bg-gray-800 p-4 rounded mb-6 flex gap-4 items-center">
         <input type="number" id="productId" placeholder="Product ID" min="1"
@@ -133,6 +135,7 @@
             ➕ Add Item
         </button>
     </div>
+
     <!-- Clear Cart Button -->
     <div class="flex justify-end mb-2 gap-2">
         <a href="clear-cart"
@@ -140,6 +143,7 @@
             🗑️ Clear Bill
         </a>
     </div>
+
     <!-- Bill Table -->
     <div class="overflow-x-auto bg-gray-800 rounded">
         <table class="w-full table-auto text-left text-white">
@@ -155,41 +159,48 @@
             </tr>
             </thead>
             <tbody class="text-sm">
-            <c:choose>
-                <c:when test="${not empty sessionScope.cart}">
-                    <c:forEach var="item" items="${sessionScope.cart}">
-                        <tr class="border-t border-gray-600">
-                            <td class="px-4 py-2">${item.product.id}</td>
-                            <td class="px-4 py-2">${item.product.name}</td>
-                            <td class="px-4 py-2">${item.product.category}</td>
-                            <td class="px-4 py-2">Rs. <fmt:formatNumber value="${item.product.price}" type="number" minFractionDigits="2" maxFractionDigits="2"/></td>
-                            <td class="px-4 py-2">${item.quantity}</td>
-                            <td class="px-4 py-2">Rs. <fmt:formatNumber value="${item.total}" type="number" minFractionDigits="2" maxFractionDigits="2"/></td>
-                            <td class="px-4 py-2">
-                                <a href="remove-item?id=${item.product.id}"
-                                   class="text-red-500 hover:text-red-700 font-semibold">❌ Remove</a>
-                            </td>
-                        </tr>
-                    </c:forEach>
-                </c:when>
-                <c:otherwise>
-                    <tr>
-                        <td colspan="7" class="text-center px-4 py-4 text-gray-400">🛒 Cart is empty</td>
-                    </tr>
-                </c:otherwise>
-            </c:choose>
+            <%
+                List<CartItem> cart = (List<CartItem>) session.getAttribute("cart");
+                double total = 0;
+                if (cart != null && !cart.isEmpty()) {
+                    for (CartItem item : cart) {
+                        double rowTotal = item.getTotal();
+                        total += rowTotal;
+            %>
+            <tr class="border-t border-gray-600">
+                <td class="px-4 py-2"><%= item.getProduct().getId() %></td>
+                <td class="px-4 py-2"><%= item.getProduct().getName() %></td>
+                <td class="px-4 py-2"><%= item.getProduct().getCategory() %></td>
+                <td class="px-4 py-2">Rs. <%= String.format("%.2f", item.getProduct().getPrice()) %></td>
+                <td class="px-4 py-2"><%= item.getQuantity() %></td>
+                <td class="px-4 py-2">Rs. <%= String.format("%.2f", rowTotal) %></td>
+                <td class="px-4 py-2">
+                    <a href="remove-item?id=<%= item.getProduct().getId() %>"
+                       class="text-red-500 hover:text-red-700 font-semibold">❌ Remove</a>
+                </td>
+            </tr>
+            <% } } else { %>
+            <tr>
+                <td colspan="7" class="text-center px-4 py-4 text-gray-400">🛒 Cart is empty</td>
+            </tr>
+            <% } %>
             </tbody>
         </table>
     </div>
+
     <div class="text-right mt-4 text-xl font-bold">
-        Total: <span id="totalAmount">Rs. <fmt:formatNumber value="${sessionScope.cart.stream().map(item -> item.total).sum()}" type="number" minFractionDigits="2" maxFractionDigits="2"/></span>
+        Total: <span id="totalAmount">Rs. <%= String.format("%.2f", total) %></span>
     </div>
+
 </div>
+
 <footer class="text-center text-gray-500 text-sm py-6 border-t border-gray-800">
     © 2025 Pahana Edu. All Rights Reserved.
 </footer>
+
 <script>
     let customers = [];
+
     // Fetch customers from backend for auto-complete
     fetch('${pageContext.request.contextPath}/customers?format=json')
         .then(response => {
@@ -199,7 +210,7 @@
             return response.json();
         })
         .then(data => {
-            console.log('Fetched customers:', data);
+            console.log('Fetched customers:', data); // Log for debugging
             customers = data;
             if (!Array.isArray(customers) || customers.length === 0) {
                 console.warn('No customers found or invalid data format');
@@ -209,21 +220,26 @@
             console.error('Error fetching customers:', error);
             alert('Failed to load customer data. Please try again.');
         });
+
     // Show suggestions for customer name
     function showSuggestions() {
         const input = document.getElementById('customerName').value.trim().toLowerCase();
         const suggestionsDiv = document.getElementById('nameSuggestions');
         suggestionsDiv.innerHTML = '';
         suggestionsDiv.classList.add('hidden');
+
         if (input.length === 0) {
             return;
         }
+
         const filtered = customers.filter(c =>
             c.name && c.name.toLowerCase().includes(input)
         );
+
         if (filtered.length === 0) {
             return;
         }
+
         filtered.forEach(c => {
             const div = document.createElement('div');
             div.classList.add('px-4', 'py-2', 'hover:bg-gray-700', 'cursor-pointer', 'text-white');
@@ -237,6 +253,7 @@
         });
         suggestionsDiv.classList.remove('hidden');
     }
+
     // Hide suggestions when clicking outside
     document.addEventListener('click', (event) => {
         const suggestionsDiv = document.getElementById('nameSuggestions');
@@ -245,33 +262,41 @@
             suggestionsDiv.classList.add('hidden');
         }
     });
+
     function addItem() {
         const id = document.getElementById("productId").value.trim();
         const qty = document.getElementById("quantity").value.trim();
+
         if (!id || !qty || Number(qty) <= 0) {
             const url = new URL(window.location.href);
             url.searchParams.set('error', 'invalid');
             window.location.href = url.toString();
             return;
         }
+
         const form = document.createElement("form");
         form.method = "post";
         form.action = "add-to-cart";
+
         const idInput = document.createElement("input");
         idInput.type = "hidden";
         idInput.name = "id";
         idInput.value = id;
+
         const qtyInput = document.createElement("input");
         qtyInput.type = "hidden";
         qtyInput.name = "quantity";
         qtyInput.value = qty;
+
         form.appendChild(idInput);
         form.appendChild(qtyInput);
         document.body.appendChild(form);
         form.submit();
     }
+
     let totalAmount = 0;
     let givenAmount = 0;
+
     function openPaymentModal(event) {
         event.preventDefault();
         const totalText = document.getElementById("totalAmount").textContent || "";
@@ -280,10 +305,12 @@
         if (parts.length === 2) {
             parsedTotal = parseFloat(parts[1]);
         }
+
         if (isNaN(parsedTotal) || parsedTotal <= 0) {
             alert("🛑 Cannot checkout. Total is 0 or invalid.");
             return false;
         }
+
         totalAmount = parsedTotal;
         document.getElementById("modalTotal").textContent = totalAmount.toFixed(2);
         document.getElementById("amountGiven").value = "";
@@ -291,9 +318,11 @@
         document.getElementById("balanceModal").classList.add("hidden");
         return false;
     }
+
     function closePaymentModal() {
         document.getElementById("paymentModal").classList.add("hidden");
     }
+
     function proceedPayment() {
         const givenInput = document.getElementById("amountGiven");
         const given = parseFloat(givenInput.value);
@@ -301,34 +330,41 @@
             alert("⚠️ Please enter a valid amount greater than or equal to total.");
             return;
         }
+
         givenAmount = given;
         const balance = given - totalAmount;
         closePaymentModal();
         document.getElementById("balanceAmountModal").textContent = balance.toFixed(2);
         document.getElementById("balanceModal").classList.remove("hidden");
     }
+
     function backToPaymentModal() {
         document.getElementById("balanceModal").classList.add("hidden");
         document.getElementById("paymentModal").classList.remove("hidden");
     }
+
     function confirmPayment() {
         let form = document.getElementById("checkoutForm");
         let oldInput = document.getElementById("givenAmountInput");
         if (oldInput) form.removeChild(oldInput);
+
         let input = document.createElement("input");
         input.type = "hidden";
         input.name = "amountGiven";
         input.id = "givenAmountInput";
         input.value = givenAmount;
         form.appendChild(input);
+
         form.submit();
     }
+
     function closeInvalidInputModal() {
         document.getElementById('invalidInputModal').classList.add('hidden');
         const url = new URL(window.location.href);
         url.searchParams.delete('error');
         window.history.replaceState({}, document.title, url.toString());
     }
+
     window.onload = function () {
         const urlParams = new URLSearchParams(window.location.search);
         if (urlParams.get('error') === 'invalid') {
@@ -336,5 +372,6 @@
         }
     };
 </script>
+
 </body>
 </html>

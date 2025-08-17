@@ -1,4 +1,4 @@
-package com.example.Business.reports.controller;
+package com.example.Business.reports;
 
 import java.io.IOException;
 import java.io.PrintWriter;

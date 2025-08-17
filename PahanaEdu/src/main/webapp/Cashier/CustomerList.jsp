@@ -60,22 +60,15 @@
 
   <!-- Search Form -->
   <form id="search-form" class="mb-6 bg-gray-900 p-4 rounded shadow">
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-      <div>
+    <div class="flex items-center space-x-4">
+      <div class="flex-1">
         <label class="block text-sm font-medium text-gray-300">Search</label>
         <input type="text" name="search" class="mt-1 block w-full border-gray-600 rounded-md shadow-sm bg-gray-800 text-white p-2" placeholder="Search by name, email, or phone">
       </div>
-      <div>
-<%--        <label class="block text-sm font-medium text-gray-300">Sort By</label>--%>
-<%--        <select name="sortBy" class="mt-1 block w-full border-gray-600 rounded-md shadow-sm bg-gray-800 text-white p-2">--%>
-<%--          <option value="nic">NIC</option>--%>
-<%--          <option value="name">Name</option>--%>
-<%--        </select>--%>
+      <div class="flex space-x-2 mt-6">
+        <button type="button" onclick="applySearch()" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded">Search</button>
+        <button type="button" onclick="clearSearch()" class="bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded">Clear</button>
       </div>
-    </div>
-    <div class="mt-4 flex space-x-4">
-      <button type="button" onclick="applySearch()" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded">Search</button>
-      <button type="button" onclick="clearSearch()" class="bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded">Clear</button>
     </div>
   </form>
 
@@ -86,7 +79,7 @@
     if (customers != null && !customers.isEmpty()) {
   %>
 
-  <!-- Customer Table -->
+  <!-- Customer Details Table -->
   <div class="overflow-x-auto">
     <table class="w-full table-auto text-sm text-left border border-gray-700">
       <thead class="bg-gray-700 text-xs uppercase">

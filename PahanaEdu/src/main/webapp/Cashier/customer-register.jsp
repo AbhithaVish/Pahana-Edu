@@ -18,8 +18,6 @@
   </div>
   <h2 class="text-2xl font-bold text-center mb-6">👤 Register Customer</h2>
 
-
-
   <%
     String msg = request.getParameter("msg");
     String error = request.getParameter("error");
