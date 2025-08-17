@@ -11,7 +11,7 @@ jobs:
 
     defaults:
       run:
-        working-directory: Pahana-Edu\PahanaEdu
+        working-directory: Pahana-Edu/PahanaEdu
 
     steps:
       - name: Checkout repository
