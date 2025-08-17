@@ -1,13 +1,17 @@
-name: maven.yml
+name: Java Maven CI
 
 on:
   push:
     branches:
-      - main
+      - main   # runs only when pushing to main
 
 jobs:
   build:
     runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: Pahana-Edu\PahanaEdu
 
     steps:
       - name: Checkout repository
@@ -21,18 +25,10 @@ jobs:
           cache: maven
 
       - name: Build with Maven
-        run: |
-          # Ensure the correct directory containing pom.xml
-          if [ -f pom.xml ]; then
-            mvn -B clean verify
-          else
-            echo "Error: pom.xml not found in $(pwd)"
-            find . -name pom.xml
-            exit 1
-          fi
+        run: mvn -B clean verify
 
       - name: Upload WAR artifact
         uses: actions/upload-artifact@v4
         with:
           name: pahana-edu-war
-          path: target/pahana-edu.war
+          path: PahanaEdu/target/pahana-edu.war
