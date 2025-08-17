@@ -1,4 +1,3 @@
-```yaml
 name: maven.yml
 
 on:
@@ -37,4 +36,3 @@ jobs:
         with:
           name: pahana-edu-war
           path: target/pahana-edu.war
-```
