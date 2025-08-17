@@ -1,4 +1,4 @@
-package com.example.Business.reports;
+package com.example.Business.reports.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -11,7 +11,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-@WebServlet("/SalesReport")
+//@WebServlet("/SalesReport")
 public class SalesReportServlet extends HttpServlet {
     private static final String DB_URL = "jdbc:mysql://localhost:3306/pahana_edu";
     private static final String DB_USER = "root";

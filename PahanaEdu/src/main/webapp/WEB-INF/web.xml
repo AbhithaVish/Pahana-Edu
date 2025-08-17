@@ -31,7 +31,7 @@
     <!-- Register Customer -->
     <servlet>
         <servlet-name>CustomerRegisterServlet</servlet-name>
-        <servlet-class>com.example.Business.customer.controller.CustomerCreateServlet</servlet-class>
+        <servlet-class>com.example.Business.customer.CustomerCreateServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>CustomerRegisterServlet</servlet-name>
@@ -72,7 +72,7 @@
     <!-- Edit Customer (GET form) -->
     <servlet>
         <servlet-name>CustomerEditServlet</servlet-name>
-        <servlet-class>com.example.Business.customer.controller.CustomerEditServlet</servlet-class>
+        <servlet-class>com.example.Business.customer.CustomerEditServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>CustomerEditServlet</servlet-name>
@@ -82,7 +82,7 @@
     <!-- Update Customer (POST) -->
     <servlet>
         <servlet-name>CustomerUpdateServlet</servlet-name>
-        <servlet-class>com.example.Business.customer.controller.CustomerUpdateServlet</servlet-class>
+        <servlet-class>com.example.Business.customer.CustomerUpdateServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>CustomerUpdateServlet</servlet-name>
@@ -92,12 +92,14 @@
     <!-- Delete Customer (GET) -->
     <servlet>
         <servlet-name>CustomerDeleteServlet</servlet-name>
-        <servlet-class>com.example.Business.customer.controller.CustomerDeleteServlet</servlet-class>
+        <servlet-class>com.example.Business.customer.CustomerDeleteServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>CustomerDeleteServlet</servlet-name>
         <url-pattern>/Cashier/delete-customer</url-pattern>
     </servlet-mapping>
+
+
 
 
 </web-app>

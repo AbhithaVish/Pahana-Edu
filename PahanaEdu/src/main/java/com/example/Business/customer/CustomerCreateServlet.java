@@ -1,7 +1,6 @@
-package com.example.Business.customer.controller;
+package com.example.Business.customer;
 
 import com.example.util.DBConn;
-import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
 
