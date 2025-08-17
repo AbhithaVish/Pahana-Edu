@@ -7,7 +7,7 @@
 </head>
 <body class="bg-gray-950 text-gray-100 font-sans">
 
-<!-- Sticky Header -->
+<!-- Header -->
 <header class="sticky top-0 z-50 bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-500 shadow-lg">
   <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
     <!-- Logo & Title -->

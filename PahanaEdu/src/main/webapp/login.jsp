@@ -8,7 +8,7 @@
 <%-- Created by IntelliJ IDEA. User: abhit Date: 7/12/2025 Time: 8:25 AM --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
-    // Check if user is already logged in
+    // Check if user is already logged in or not
     HttpSession userSession = request.getSession(false);
     if (userSession != null && userSession.getAttribute("username") != null) {
         String userType = (String) userSession.getAttribute("userType");
