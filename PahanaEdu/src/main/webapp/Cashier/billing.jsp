@@ -210,7 +210,7 @@
             return response.json();
         })
         .then(data => {
-            console.log('Fetched customers:', data); // Log for debugging
+            console.log('Fetched customers:', data);
             customers = data;
             if (!Array.isArray(customers) || customers.length === 0) {
                 console.warn('No customers found or invalid data format');
