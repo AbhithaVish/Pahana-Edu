@@ -96,8 +96,8 @@
           <th class="px-4 py-2 border">Customer Name</th>
           <th class="px-4 py-2 border">Customer Phone</th>
           <th class="px-4 py-2 border">Total Amount (Rs.)</th>
-          <%--          <th class="px-4 py-2 border">Discount (Rs.)</th>--%>
-          <%--          <th class="px-4 py-2 border">Service Charge (Rs.)</th>--%>
+                    <th class="px-4 py-2 border">Discount (Rs.)</th>
+                    <th class="px-4 py-2 border">Service Charge (Rs.)</th>
           <th class="px-4 py-2 border">Created At</th>
         </tr>
         </thead>
@@ -108,8 +108,8 @@
             <td class="px-4 py-2 border">${sale.customerName}</td>
             <td class="px-4 py-2 border">${sale.customerPhone}</td>
             <td class="px-4 py-2 border">${sale.totalAmount}</td>
-              <%--            <td class="px-4 py-2 border">${sale.discount}</td>--%>
-              <%--            <td class="px-4 py-2 border">${sale.serviceCharge}</td>--%>
+                          <td class="px-4 py-2 border">${sale.discount}</td>
+                          <td class="px-4 py-2 border">${sale.serviceCharge}</td>
             <td class="px-4 py-2 border">${sale.createdAt}</td>
           </tr>
         </c:forEach>
