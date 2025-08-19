@@ -1,4 +1,4 @@
-# Pahana Bookshop POS System - V1.1.0 Release 🚀
+# Pahana Bookshop POS System - V2.0 Release 🚀
 
 We're excited to announce the release of **Pahana Bookshop POS V1.1.0**! This update focuses on enhancing user experience, improving support, and strengthening the stability of our initial launch. Thank you for your feedback, which has been invaluable in shaping this release.
 
