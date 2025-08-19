@@ -1,9 +1,9 @@
 name: maven.yml
 
 on:
-  push:               # Run after every commit push
+  push:
     branches:
-      - main   # Change to "main" if you want main branch instead
+      - main
   pull_request:
     branches:
       - main
@@ -13,11 +13,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Step 1: Checkout code from repo
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # Step 2: Set up Java 21
       - name: Set up JDK 21
         uses: actions/setup-java@v4
         with:
@@ -25,11 +23,9 @@ jobs:
           distribution: temurin
           cache: maven
 
-      # Step 3: Build with Maven (includes tests)
       - name: Build with Maven
         run: mvn -B clean verify
 
-      # Optional: Upload WAR artifact
       - name: Upload WAR artifact
         uses: actions/upload-artifact@v4
         with:

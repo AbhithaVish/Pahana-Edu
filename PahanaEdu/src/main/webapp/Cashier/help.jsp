@@ -118,11 +118,11 @@
 
   <!-- Admin Features -->
   <section class="bg-gray-900 p-6 rounded-xl shadow-lg">
-    <h3 class="text-2xl font-bold mb-4">🛡 Admin Features</h3>
+    <h3 class="text-2xl font-bold mb-4">🛡 Cashier Features</h3>
     <ul class="list-disc ml-6 text-gray-400 space-y-1">
-      <li>Manage products (Add/Edit/Delete).</li>
-      <li>Generate & export sales reports.</li>
-      <li>View customer purchase history.</li>
+      <li>Manage Customers (Add/Edit/Delete).</li>
+      <li>Generate & export Bills.</li>
+      <li>View customer purchases.</li>
     </ul>
   </section>
 
